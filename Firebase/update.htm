@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<!-- saved from url=(0061)https://www.firebase.com/docs/javascript/firebase/update.html -->
+<html class=" js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths" lang="en"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1, user-scalable=no">
+  <title>update Function - Firebase Javascript SDK</title>
+  <meta name="description" content="">
+  <link href="https://www.firebase.com/favicon.ico" rel="shortcut icon">
+  <link href="https://www.firebase.com/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- add page-specific header contents with a tags object in the JSON -->
+  <link rel="stylesheet" href="https://www.firebase.com/css/code.css">
+  <script type="text/javascript" async="" src="./update Function - Firebase Javascript SDK_files/segment.min.js"></script><script type="text/javascript" async="" src="./update Function - Firebase Javascript SDK_files/intercom.v1.js"></script><script type="text/javascript" async="" src="./update Function - Firebase Javascript SDK_files/ga.js"></script><script type="text/javascript" async="" src="./update Function - Firebase Javascript SDK_files/track.js" id="cio-tracker" data-site-id="13b1bbb17c46c7cd23ad"></script><script type="text/javascript" async="" src="./update Function - Firebase Javascript SDK_files/8hz.js"></script><script type="text/javascript" async="" src="./update Function - Firebase Javascript SDK_files/analytics.min.js"></script><script type="text/javascript" src="./update Function - Firebase Javascript SDK_files/prettify.js"></script>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://www.firebase.com/css/global.css">
+
+  <script src="./update Function - Firebase Javascript SDK_files/modernizr-2.0.6.min.js"></script>
+</head>
+
+<body id="apiref" onload="prettyPrint()">
+<div id="wrapper">
+  <header id="header">
+    <div class="wrapper cf api-ref-header">
+      <h1 class="logo"><a href="https://www.firebase.com/"><img src="./update Function - Firebase Javascript SDK_files/logo_api_ref.png" alt=""></a></h1>
+      <nav id="navbar">
+        <ul class="menu cf">
+          <li><a href="https://www.firebase.com/docs" class="home"></a></li><li><a href="https://www.firebase.com/docs/javascript/firebase/index.html" class="current">JavaScript</a></li><li><a href="https://www.firebase.com/docs/rest-api.html">REST</a></li><li><a href="https://www.firebase.com/docs/security/rule-expressions/index.html">Security</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="cf" id="api-ref-page">
+
+    <div id="sidebar">
+        <div class="section_head">Javascript SDK</div>
+          <div class="section_topic   section_pad_top">
+            <a href="https://www.firebase.com/docs/javascript/firebase/index.html">Firebase</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/firebase/new-firebase.html">new Firebase( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/firebase/auth.html">auth( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/firebase/unauth.html">unauth( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/firebase/child.html">child( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/firebase/parent.html">parent( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/firebase/root.html">root( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/firebase/name.html">name( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/firebase/tostring.html">toString( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/firebase/set.html">set( )</a>
+          </div>
+          <div class="section_topic selected sub_section ">
+            <a href="./update Function - Firebase Javascript SDK_files/update Function - Firebase Javascript SDK.htm">update( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/firebase/remove.html">remove( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/firebase/push.html">push( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/firebase/setwithpriority.html">setWithPriority( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/firebase/setpriority.html">setPriority( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/firebase/transaction.html">transaction( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/firebase/on.html">on( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/firebase/off.html">off( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/firebase/once.html">once( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/firebase/limit.html">limit( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/firebase/startat.html">startAt( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/firebase/endat.html">endAt( )</a>
+          </div>
+          <div class="section_topic   section_pad_top">
+            <a href="https://www.firebase.com/docs/javascript/query/index.html">Query</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/query/on.html">on( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/query/off.html">off( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/query/once.html">once( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/query/limit.html">limit( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/query/startat.html">startAt( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/query/endat.html">endAt( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/query/ref.html">ref( )</a>
+          </div>
+          <div class="section_topic   section_pad_top">
+            <a href="https://www.firebase.com/docs/javascript/ondisconnect/index.html">onDisconnect</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/ondisconnect/set.html">set( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/ondisconnect/setwithpriority.html">setWithPriority( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/ondisconnect/update.html">update( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/ondisconnect/remove.html">remove( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/ondisconnect/cancel.html">cancel( )</a>
+          </div>
+          <div class="section_topic   section_pad_top">
+            <a href="https://www.firebase.com/docs/javascript/datasnapshot/index.html">DataSnapshot</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/datasnapshot/val.html">val( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/datasnapshot/child.html">child( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/datasnapshot/foreach.html">forEach( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/datasnapshot/haschild.html">hasChild( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/datasnapshot/haschildren.html">hasChildren( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/datasnapshot/name.html">name( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/datasnapshot/numchildren.html">numChildren( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/datasnapshot/ref.html">ref( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/datasnapshot/getpriority.html">getPriority( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/datasnapshot/exportval.html">exportVal( )</a>
+          </div>
+    </div>
+
+    <div class="api-content">
+        <div id="function_page">
+          <h1>update(&nbsp;)</h1>
+          <p>
+            Write the enumerated children to this Firebase location. This will overwrite only children enumerated in the 'value' parameter and will leave others untouched.</p><p>The effect of the write will be visible immediately and the corresponding events ('value', 'child_added', etc.) will be triggered. Synchronization of the data to the Firebase servers will also be started, and if provided, the onComplete callback will be called asynchronously after synchronization has finished.</p><p>If the values specified for the children are objects, update will merely set those values. It will not recursively 'update' those children. Passing null as a value for a child is equivalent to calling <a href="https://www.firebase.com/docs/javascript/firebase/remove.html" class="functionLink">remove( )</a> on that child.</p><p>Note that modifying data with update(&nbsp;) will cancel any pending transactions at that location, so extreme care should be taken if mixing update(&nbsp;) and <a href="https://www.firebase.com/docs/javascript/firebase/transaction.html" class="functionLink">transaction( )</a> to modify the same data.</p><p>A single update(&nbsp;) will generate a single 'value' event at the location where the update(&nbsp;) was performed, regardless of how many children were modified.</p>
+          <p></p>
+          <div class="hr"></div>
+          <h2>Arguments</h2>
+          <div class="code_wrapper">
+            <div class="function_call">
+              <span class="function_name">update(&nbsp;value,&nbsp;[onComplete]&nbsp;)</span>
+            </div>
+            <div class="function_arguments">
+              <span class="argument"><strong>value </strong> : An object containing the children and associated values to be written.</span>
+              <span class="argument"><strong>onComplete <em>(optional)</em></strong> : A callback function that will be called when synchronization to the Firebase servers has completed.  The callback will be passed an Error object on failure, else null for success.</span>
+            </div>
+          </div>
+          <h2>Returns</h2>
+          <div class="code_wrapper">
+            <div class="function_arguments">
+              <span class="argument"><strong></strong>No return value.</span>
+            </div>
+          </div>
+
+          <h2>Usage</h2>
+          <pre class="prettyprint prettyprinted" style=""><span class="kwd">var</span><span class="pln"> fredNameRef </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Firebase</span><span class="pun">(</span><span class="str">'https://SampleChat.firebaseIO-demo.com/users/fred/name'</span><span class="pun">);</span><span class="pln">
+
+</span><span class="com">// Modify the 'first' and 'last' children, but leave other data at fredNameRef unchanged</span><span class="pln">
+fredNameRef</span><span class="pun">.</span><span class="pln">update</span><span class="pun">({</span><span class="pln">first</span><span class="pun">:</span><span class="pln"> </span><span class="str">'Fred'</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">last</span><span class="pun">:</span><span class="pln"> </span><span class="str">'Flintstone'</span><span class="pun">});</span></pre>
+          <p>
+            
+          </p>
+          <pre class="prettyprint prettyprinted" style=""><span class="com">// Same as the previous example, except we will also display an alert</span><span class="pln">
+</span><span class="com">// message when the data has finished synchronizing.</span><span class="pln">
+</span><span class="kwd">var</span><span class="pln"> onComplete </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">error</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">error</span><span class="pun">)</span><span class="pln"> alert</span><span class="pun">(</span><span class="str">'Synchronization failed.'</span><span class="pun">);</span><span class="pln">
+  </span><span class="kwd">else</span><span class="pln"> alert</span><span class="pun">(</span><span class="str">'Synchronization succeeded.'</span><span class="pun">);</span><span class="pln">
+</span><span class="pun">};</span><span class="pln">
+fredNameRef</span><span class="pun">.</span><span class="pln">update</span><span class="pun">({</span><span class="pln">first</span><span class="pun">:</span><span class="pln"> </span><span class="str">'Wilma'</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">last</span><span class="pun">:</span><span class="pln"> </span><span class="str">'Flintstone'</span><span class="pun">},</span><span class="pln"> onComplete</span><span class="pun">);</span></pre>
+          <p>
+            
+          </p>
+          <pre class="prettyprint prettyprinted" style=""><span class="kwd">var</span><span class="pln"> fredRef </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Firebase</span><span class="pun">(</span><span class="str">'https://SampleChat.firebaseIO-demo.com/users/fred'</span><span class="pun">);</span><span class="pln">
+
+</span><span class="com">//The following 2 function calls are equivalent</span><span class="pln">
+fredRef</span><span class="pun">.</span><span class="pln">update</span><span class="pun">({</span><span class="pln">name</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span><span class="pln">first</span><span class="pun">:</span><span class="pln"> </span><span class="str">"Fred"</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">last</span><span class="pun">:</span><span class="pln"> </span><span class="str">"Flintstone"</span><span class="pun">}});</span><span class="pln">
+fredRef</span><span class="pun">.</span><span class="pln">child</span><span class="pun">(</span><span class="str">"name"</span><span class="pun">).</span><span class="kwd">set</span><span class="pun">({</span><span class="pln">first</span><span class="pun">:</span><span class="pln"> </span><span class="str">"Fred"</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">last</span><span class="pun">:</span><span class="pln"> </span><span class="str">"Flintstone"</span><span class="pun">});</span></pre>
+          <p>
+            
+          </p>
+        </div>
+
+    </div>
+
+  </div>
+</div> <!-- #main end -->
+
+<script src="./update Function - Firebase Javascript SDK_files/jquery.min.js"></script>
+<!--[if (gte IE 6)&(lte IE 8)]>
+<script src="../../../js/selectivizr.js"></script>
+<script src="../../../js/response.js"></script>
+<![endif]-->
+<script src="./update Function - Firebase Javascript SDK_files/global.js"></script>
+<script src="./update Function - Firebase Javascript SDK_files/analyze.js"></script>
+
+
+
+</body></html>

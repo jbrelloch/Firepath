@@ -1,0 +1,108 @@
+**********************BASIC**********************
+
+/node/node
+
+**********************CONDITIONAL**********************
+
+/node[1]/node (like an array)
+/node[othernode (><=) 1]/node
+/node[othernode (><=) 1 (and/or) othernode (><=) 1]/node
+
+need to figure out how to differentiate between nodes and types (string, int, etc)
+perhaps make nodes require the .val() for direct comparisons
+
+**********************WILDCARDS**********************
+
+/*/node (the * matches any node at that level)
+/node1//node2 (the // matches any node2 below node1)
+
+**********************POSITIONAL**********************
+
+/node[last()]
+/node[position() (><=) 1]
+
+**********************IGNORE**********************
+
+single dot (.) - redundant with child function
+
+combined index addresses ([othernode (><=) 1][1] or [1][othernode (><=) 1]) - to difficult for now (ask raj)
+
+id capabilities
+
+or symbol between paths (/node/node | /node)
+
+**********************REGEX STUFF**********************
+
+first match the sections
+
+^(https://|http://)[^/]+ |
+[^/]+\[[^\]]+[^/]+ |
+[^/]+ |
+(?://)[^/]+
+
+(change to javascript regex format)
+^(https://|http://)[^/]+|[^/]+\[[^\]]+[^/]+|[^/]+|(?://)[^/]+
+^(https:\/\/|http:\/\/)[^\/]+|[^\/]+\[[^\]]+[^\/]+|[^\/]+|(?:\/\/)[^\/]+
+
+on (for new FirePath())
+
+https://firepath-fb.firebaseIO.com/a1[b2=1 and b1/c2=2]//d1
+
+yeilds
+
+https://firepath-fb.firebaseIO.com
+a1[b2=1 and b1/c2=2]
+//d1
+
+on (for .child())
+
+Players[x=1]//Name/whatever
+
+yeilds
+
+Players[x=1]
+//Name
+whatever
+
+then we need to break up the conditionals
+
+b2=1 and (b1/c22<=22 or c3='test2')
+
+first grab the operators
+
+[=<>]+
+
+next grab the reserved words (functions to be added later)
+
+ and | or 
+
+next grab the explicit strings
+
+'\w+'|"\w+"
+
+next grab the node names
+
+[a-zA-Z][a-zA-Z0-9/]+
+
+finally grab the numbers (only ints for now)
+
+[0-9]+
+
+all together 
+
+\(.+\)|[=<>]+| and | or |'\w+'|"\w+"|[a-zA-Z][a-zA-Z0-9/]+|[0-9]+
+\(.+\)|[=<>]+| and | or |'\w+'|"\w+"|[a-zA-Z][a-zA-Z0-9\/]+|[0-9]+
+
+yeilds
+
+b2
+=
+1
+ and 
+b1/c22
+<=
+22
+ or 
+c3
+=
+'test2'

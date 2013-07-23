@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<!-- saved from url=(0059)https://www.firebase.com/docs/javascript/firebase/push.html -->
+<html class=" js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths" lang="en"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1, user-scalable=no">
+  <title>push Function - Firebase Javascript SDK</title>
+  <meta name="description" content="">
+  <link href="https://www.firebase.com/favicon.ico" rel="shortcut icon">
+  <link href="https://www.firebase.com/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- add page-specific header contents with a tags object in the JSON -->
+  <link rel="stylesheet" href="https://www.firebase.com/css/code.css">
+  <script type="text/javascript" async="" src="./push Function - Firebase Javascript SDK_files/segment.min.js"></script><script type="text/javascript" async="" src="./push Function - Firebase Javascript SDK_files/intercom.v1.js"></script><script type="text/javascript" async="" src="./push Function - Firebase Javascript SDK_files/ga.js"></script><script type="text/javascript" async="" src="./push Function - Firebase Javascript SDK_files/track.js" id="cio-tracker" data-site-id="13b1bbb17c46c7cd23ad"></script><script type="text/javascript" async="" src="./push Function - Firebase Javascript SDK_files/8hz.js"></script><script type="text/javascript" async="" src="./push Function - Firebase Javascript SDK_files/analytics.min.js"></script><script type="text/javascript" src="./push Function - Firebase Javascript SDK_files/prettify.js"></script>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://www.firebase.com/css/global.css">
+
+  <script src="./push Function - Firebase Javascript SDK_files/modernizr-2.0.6.min.js"></script>
+</head>
+
+<body id="apiref" onload="prettyPrint()">
+<div id="wrapper">
+  <header id="header">
+    <div class="wrapper cf api-ref-header">
+      <h1 class="logo"><a href="https://www.firebase.com/"><img src="./push Function - Firebase Javascript SDK_files/logo_api_ref.png" alt=""></a></h1>
+      <nav id="navbar">
+        <ul class="menu cf">
+          <li><a href="https://www.firebase.com/docs" class="home"></a></li><li><a href="https://www.firebase.com/docs/javascript/firebase/index.html" class="current">JavaScript</a></li><li><a href="https://www.firebase.com/docs/rest-api.html">REST</a></li><li><a href="https://www.firebase.com/docs/security/rule-expressions/index.html">Security</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="cf" id="api-ref-page">
+
+    <div id="sidebar">
+        <div class="section_head">Javascript SDK</div>
+          <div class="section_topic   section_pad_top">
+            <a href="https://www.firebase.com/docs/javascript/firebase/index.html">Firebase</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/firebase/new-firebase.html">new Firebase( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/firebase/auth.html">auth( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/firebase/unauth.html">unauth( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/firebase/child.html">child( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/firebase/parent.html">parent( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/firebase/root.html">root( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/firebase/name.html">name( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/firebase/tostring.html">toString( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/firebase/set.html">set( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/firebase/update.html">update( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/firebase/remove.html">remove( )</a>
+          </div>
+          <div class="section_topic selected sub_section ">
+            <a href="./push Function - Firebase Javascript SDK_files/push Function - Firebase Javascript SDK.htm">push( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/firebase/setwithpriority.html">setWithPriority( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/firebase/setpriority.html">setPriority( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/firebase/transaction.html">transaction( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/firebase/on.html">on( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/firebase/off.html">off( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/firebase/once.html">once( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/firebase/limit.html">limit( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/firebase/startat.html">startAt( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/firebase/endat.html">endAt( )</a>
+          </div>
+          <div class="section_topic   section_pad_top">
+            <a href="https://www.firebase.com/docs/javascript/query/index.html">Query</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/query/on.html">on( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/query/off.html">off( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/query/once.html">once( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/query/limit.html">limit( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/query/startat.html">startAt( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/query/endat.html">endAt( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/query/ref.html">ref( )</a>
+          </div>
+          <div class="section_topic   section_pad_top">
+            <a href="https://www.firebase.com/docs/javascript/ondisconnect/index.html">onDisconnect</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/ondisconnect/set.html">set( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/ondisconnect/setwithpriority.html">setWithPriority( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/ondisconnect/update.html">update( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/ondisconnect/remove.html">remove( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/ondisconnect/cancel.html">cancel( )</a>
+          </div>
+          <div class="section_topic   section_pad_top">
+            <a href="https://www.firebase.com/docs/javascript/datasnapshot/index.html">DataSnapshot</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/datasnapshot/val.html">val( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/datasnapshot/child.html">child( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/datasnapshot/foreach.html">forEach( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/datasnapshot/haschild.html">hasChild( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/datasnapshot/haschildren.html">hasChildren( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/datasnapshot/name.html">name( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/datasnapshot/numchildren.html">numChildren( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/datasnapshot/ref.html">ref( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/datasnapshot/getpriority.html">getPriority( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/datasnapshot/exportval.html">exportVal( )</a>
+          </div>
+    </div>
+
+    <div class="api-content">
+        <div id="function_page">
+          <h1>push(&nbsp;)</h1>
+          <p>
+            Push generates a new child location using a unique name and returns a <a href="https://www.firebase.com/docs/javascript/firebase/index.html">Firebase</a> reference to it.  This is useful when the children of a Firebase location represent a list of items.  See <a href="https://www.firebase.com/docs/managing-lists.html">Lists of Data</a>.</p><p>You can optionally pass a value to push(&nbsp;) and the value will be immediately written to the generated location.  If you don't pass a value to push(&nbsp;), nothing is written and the child will remain empty unless written to using <a href="https://www.firebase.com/docs/javascript/firebase/set.html" class="functionLink">set( )</a>.</p><p>The unique name generated by push(&nbsp;) is prefixed with a client-generated timestamp so that the resulting list will be chronologically-sorted.
+          </p>
+          <div class="hr"></div>
+          <h2>Arguments</h2>
+          <div class="code_wrapper">
+            <div class="function_call">
+              <span class="function_name">push(&nbsp;[value],&nbsp;[onComplete]&nbsp;)</span>
+            </div>
+            <div class="function_arguments">
+              <span class="argument"><strong>value <em>(optional)</em></strong> : The value to be written at the generated location (can be an object, array, string, number, boolean, or null.)</span>
+              <span class="argument"><strong>onComplete <em>(optional)</em></strong> : A callback function that will be called when the specified value is synchronized to the Firebase servers.  The callback will be passed an Error object on failure, else null.</span>
+            </div>
+          </div>
+          <h2>Returns</h2>
+          <div class="code_wrapper">
+            <div class="function_arguments">
+              <span class="argument"><strong></strong>A <a href="https://www.firebase.com/docs/javascript/firebase/index.html">Firebase</a> reference for the generated location.</span>
+            </div>
+          </div>
+
+          <h2>Usage</h2>
+          <pre class="prettyprint prettyprinted" style=""><span class="kwd">var</span><span class="pln"> messageListRef </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Firebase</span><span class="pun">(</span><span class="str">'https://SampleChat.firebaseIO-demo.com/message_list'</span><span class="pun">);</span><span class="pln">
+</span><span class="kwd">var</span><span class="pln"> newMessageRef </span><span class="pun">=</span><span class="pln"> messageListRef</span><span class="pun">.</span><span class="pln">push</span><span class="pun">();</span><span class="pln">
+newMessageRef</span><span class="pun">.</span><span class="kwd">set</span><span class="pun">({</span><span class="str">'user_id'</span><span class="pun">:</span><span class="pln"> </span><span class="str">'fred'</span><span class="pun">,</span><span class="pln"> </span><span class="str">'text'</span><span class="pun">:</span><span class="pln"> </span><span class="str">'Yabba Dabba Doo!'</span><span class="pun">});</span><span class="pln">
+</span><span class="com">// We've appended a new message to the message_list location.</span><span class="pln">
+</span><span class="kwd">var</span><span class="pln"> x </span><span class="pun">=</span><span class="pln"> newMessageRef</span><span class="pun">.</span><span class="pln">toString</span><span class="pun">();</span><span class="pln">
+</span><span class="com">// newMessageRef will be something like</span><span class="pln">
+</span><span class="com">// 'https://SampleChat.firebaseIO-demo.com/message_list/-IKo28nwJLH0Nc5XeFmj'</span></pre>
+          <p>
+            
+          </p>
+          <pre class="prettyprint prettyprinted" style=""><span class="kwd">var</span><span class="pln"> messageListRef </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Firebase</span><span class="pun">(</span><span class="str">'https://SampleChat.firebaseIO-demo.com/message_list'</span><span class="pun">);</span><span class="pln">
+messageListRef</span><span class="pun">.</span><span class="pln">push</span><span class="pun">({</span><span class="str">'user_id'</span><span class="pun">:</span><span class="pln"> </span><span class="str">'fred'</span><span class="pun">,</span><span class="pln"> </span><span class="str">'text'</span><span class="pun">:</span><span class="pln"> </span><span class="str">'Yabba Dabba Doo!'</span><span class="pun">});</span><span class="pln">
+</span><span class="com">// Same effect as the previous example, but we've combined the push() and the set().</span></pre>
+          <p>
+            
+          </p>
+        </div>
+
+    </div>
+
+  </div>
+</div> <!-- #main end -->
+
+<script src="./push Function - Firebase Javascript SDK_files/jquery.min.js"></script>
+<!--[if (gte IE 6)&(lte IE 8)]>
+<script src="../../../js/selectivizr.js"></script>
+<script src="../../../js/response.js"></script>
+<![endif]-->
+<script src="./push Function - Firebase Javascript SDK_files/global.js"></script>
+<script src="./push Function - Firebase Javascript SDK_files/analyze.js"></script>
+
+
+
+</body></html>

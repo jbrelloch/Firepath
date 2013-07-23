@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<!-- saved from url=(0058)https://www.firebase.com/docs/javascript/firebase/off.html -->
+<html class=" js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths" lang="en"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1, user-scalable=no">
+  <title>off Function - Firebase Javascript SDK</title>
+  <meta name="description" content="">
+  <link href="https://www.firebase.com/favicon.ico" rel="shortcut icon">
+  <link href="https://www.firebase.com/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- add page-specific header contents with a tags object in the JSON -->
+  <link rel="stylesheet" href="https://www.firebase.com/css/code.css">
+  <script type="text/javascript" async="" src="./off Function - Firebase Javascript SDK_files/segment.min.js"></script><script type="text/javascript" async="" src="./off Function - Firebase Javascript SDK_files/intercom.v1.js"></script><script type="text/javascript" async="" src="./off Function - Firebase Javascript SDK_files/ga.js"></script><script type="text/javascript" async="" src="./off Function - Firebase Javascript SDK_files/track.js" id="cio-tracker" data-site-id="13b1bbb17c46c7cd23ad"></script><script type="text/javascript" async="" src="./off Function - Firebase Javascript SDK_files/8hz.js"></script><script type="text/javascript" async="" src="./off Function - Firebase Javascript SDK_files/analytics.min.js"></script><script type="text/javascript" src="./off Function - Firebase Javascript SDK_files/prettify.js"></script>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://www.firebase.com/css/global.css">
+
+  <script src="./off Function - Firebase Javascript SDK_files/modernizr-2.0.6.min.js"></script>
+</head>
+
+<body id="apiref" onload="prettyPrint()">
+<div id="wrapper">
+  <header id="header">
+    <div class="wrapper cf api-ref-header">
+      <h1 class="logo"><a href="https://www.firebase.com/"><img src="./off Function - Firebase Javascript SDK_files/logo_api_ref.png" alt=""></a></h1>
+      <nav id="navbar">
+        <ul class="menu cf">
+          <li><a href="https://www.firebase.com/docs" class="home"></a></li><li><a href="https://www.firebase.com/docs/javascript/firebase/index.html" class="current">JavaScript</a></li><li><a href="https://www.firebase.com/docs/rest-api.html">REST</a></li><li><a href="https://www.firebase.com/docs/security/rule-expressions/index.html">Security</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="cf" id="api-ref-page">
+
+    <div id="sidebar">
+        <div class="section_head">Javascript SDK</div>
+          <div class="section_topic   section_pad_top">
+            <a href="https://www.firebase.com/docs/javascript/firebase/index.html">Firebase</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/firebase/new-firebase.html">new Firebase( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/firebase/auth.html">auth( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/firebase/unauth.html">unauth( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/firebase/child.html">child( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/firebase/parent.html">parent( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/firebase/root.html">root( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/firebase/name.html">name( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/firebase/tostring.html">toString( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/firebase/set.html">set( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/firebase/update.html">update( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/firebase/remove.html">remove( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/firebase/push.html">push( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/firebase/setwithpriority.html">setWithPriority( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/firebase/setpriority.html">setPriority( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/firebase/transaction.html">transaction( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/firebase/on.html">on( )</a>
+          </div>
+          <div class="section_topic selected sub_section ">
+            <a href="./off Function - Firebase Javascript SDK_files/off Function - Firebase Javascript SDK.htm">off( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/firebase/once.html">once( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/firebase/limit.html">limit( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/firebase/startat.html">startAt( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/firebase/endat.html">endAt( )</a>
+          </div>
+          <div class="section_topic   section_pad_top">
+            <a href="https://www.firebase.com/docs/javascript/query/index.html">Query</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/query/on.html">on( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/query/off.html">off( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/query/once.html">once( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/query/limit.html">limit( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/query/startat.html">startAt( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/query/endat.html">endAt( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/query/ref.html">ref( )</a>
+          </div>
+          <div class="section_topic   section_pad_top">
+            <a href="https://www.firebase.com/docs/javascript/ondisconnect/index.html">onDisconnect</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/ondisconnect/set.html">set( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/ondisconnect/setwithpriority.html">setWithPriority( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/ondisconnect/update.html">update( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/ondisconnect/remove.html">remove( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/ondisconnect/cancel.html">cancel( )</a>
+          </div>
+          <div class="section_topic   section_pad_top">
+            <a href="https://www.firebase.com/docs/javascript/datasnapshot/index.html">DataSnapshot</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/datasnapshot/val.html">val( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/datasnapshot/child.html">child( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/datasnapshot/foreach.html">forEach( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/datasnapshot/haschild.html">hasChild( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/datasnapshot/haschildren.html">hasChildren( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/datasnapshot/name.html">name( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/datasnapshot/numchildren.html">numChildren( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/datasnapshot/ref.html">ref( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/datasnapshot/getpriority.html">getPriority( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="https://www.firebase.com/docs/javascript/datasnapshot/exportval.html">exportVal( )</a>
+          </div>
+    </div>
+
+    <div class="api-content">
+        <div id="function_page">
+          <h1>off(&nbsp;)</h1>
+          <p>
+            Detach a callback previously attached with <a href="https://www.firebase.com/docs/javascript/firebase/on.html" class="functionLink">on( )</a>.  Note that if <a href="https://www.firebase.com/docs/javascript/firebase/on.html" class="functionLink">on( )</a> was called multiple times with the same eventType and callback, the callback will be called multiple times for each event, and off(&nbsp;) must be called multiple times to remove the callback.</p><p>If a callback is not specified, all callbacks for the specified eventType will be removed. Similarly, if no eventType or callback is specified, all callbacks for the reference will be removed.
+          </p>
+          <div class="hr"></div>
+          <h2>Arguments</h2>
+          <div class="code_wrapper">
+            <div class="function_call">
+              <span class="function_name">off(&nbsp;[eventType],&nbsp;[callback],&nbsp;[context]&nbsp;)</span>
+            </div>
+            <div class="function_arguments">
+              <span class="argument"><strong>eventType <em>(optional)</em></strong> : One of the following strings: 'value', 'child_added', 'child_changed', 'child_removed' or 'child_moved.'</span>
+              <span class="argument"><strong>callback <em>(optional)</em></strong> : The callback function that was passed to <a href="https://www.firebase.com/docs/javascript/firebase/on.html" class="functionLink">on( )</a>.</span>
+              <span class="argument"><strong>context <em>(optional)</em></strong> : The context that was passed to <a href="https://www.firebase.com/docs/javascript/firebase/on.html" class="functionLink">on( )</a>.</span>
+            </div>
+          </div>
+          <h2>Returns</h2>
+          <div class="code_wrapper">
+            <div class="function_arguments">
+              <span class="argument"><strong></strong>No return value.</span>
+            </div>
+          </div>
+
+          <h2>Usage</h2>
+          <pre class="prettyprint prettyprinted" style=""><span class="kwd">var</span><span class="pln"> onValueChange </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">dataSnapshot</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> </span><span class="com">/* handle... */</span><span class="pln"> </span><span class="pun">};</span><span class="pln">
+firebaseRef</span><span class="pun">.</span><span class="pln">on</span><span class="pun">(</span><span class="str">'value'</span><span class="pun">,</span><span class="pln"> onValueChange</span><span class="pun">);</span><span class="pln">
+</span><span class="com">// Sometime later...</span><span class="pln">
+firebaseRef</span><span class="pun">.</span><span class="pln">off</span><span class="pun">(</span><span class="str">'value'</span><span class="pun">,</span><span class="pln"> onValueChange</span><span class="pun">);</span></pre>
+          <p>
+            
+          </p>
+          <pre class="prettyprint prettyprinted" style=""><span class="com">// Or you can save a line of code by using an inline function and on()'s return value.</span><span class="pln">
+</span><span class="kwd">var</span><span class="pln"> onValueChange </span><span class="pun">=</span><span class="pln"> firebaseRef</span><span class="pun">.</span><span class="pln">on</span><span class="pun">(</span><span class="str">'value'</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">dataSnapshot</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> </span><span class="com">/* handle... */</span><span class="pln"> </span><span class="pun">});</span><span class="pln">
+</span><span class="com">// Sometime later...</span><span class="pln">
+firebaseRef</span><span class="pun">.</span><span class="pln">off</span><span class="pun">(</span><span class="str">'value'</span><span class="pun">,</span><span class="pln"> onValueChange</span><span class="pun">);</span></pre>
+          <p>
+            
+          </p>
+        </div>
+
+    </div>
+
+  </div>
+</div> <!-- #main end -->
+
+<script src="./off Function - Firebase Javascript SDK_files/jquery.min.js"></script>
+<!--[if (gte IE 6)&(lte IE 8)]>
+<script src="../../../js/selectivizr.js"></script>
+<script src="../../../js/response.js"></script>
+<![endif]-->
+<script src="./off Function - Firebase Javascript SDK_files/global.js"></script>
+<script src="./off Function - Firebase Javascript SDK_files/analyze.js"></script>
+
+
+
+</body></html>

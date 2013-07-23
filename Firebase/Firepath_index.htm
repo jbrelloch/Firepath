@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<!-- saved from url=(0060)https://www.firebase.com/docs/javascript/firebase/index.html -->
+<html class=" js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths" lang="en"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1, user-scalable=no">
+  <title>Firebase API Reference - Firebase</title>
+  <meta name="description" content="">
+  <link href="https://www.firebase.com/favicon.ico" rel="shortcut icon">
+  <link href="https://www.firebase.com/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- add page-specific header contents with a tags object in the JSON -->
+  <link rel="stylesheet" href="https://www.firebase.com/css/code.css">
+  <script type="text/javascript" async="" src="./Firepath_files/segment.min.js"></script><script type="text/javascript" async="" src="./Firepath_files/ga.js"></script><script type="text/javascript" async="" src="./Firepath_files/track.js" id="cio-tracker" data-site-id="13b1bbb17c46c7cd23ad"></script><script type="text/javascript" async="" src="./Firepath_files/8hz.js"></script><script type="text/javascript" async="" src="./Firepath_files/analytics.min.js"></script><script type="text/javascript" src="./Firepath_files/prettify.js"></script>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://www.firebase.com/css/global.css">
+
+  <script src="./Firepath_files/modernizr-2.0.6.min.js"></script>
+</head>
+
+<body id="apiref" onload="prettyPrint()">
+<div id="wrapper">
+  <header id="header">
+    <div class="wrapper cf api-ref-header">
+      <h1 class="logo"><a href="https://www.firebase.com/"><img src="./Firepath_files/logo_api_ref2.png" alt=""></a></h1>
+      <nav id="navbar">
+        <ul class="menu cf">
+          <!-- FORMER TOP MENU AREA -->
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="cf" id="api-ref-page">
+
+    <div id="sidebar">
+        <div class="section_head">Javascript SDK</div>
+          <div class="section_topic selected  section_pad_top">
+            <a href="./Firepath_index.htm">Firepath</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="./new-firepath.htm">new Firepath( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="./child.htm">child( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="./parent.html">parent( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="./root.html">root( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="./name.html">name( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="./tostring.html">toString( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="./set.html">set( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="./update.html">update( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="./remove.html">remove( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="./push.html">push( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="./on.html">on( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="./off.html">off( )</a>
+          </div>
+          <div class="section_topic  sub_section ">
+            <a href="./once.html">once( )</a>
+          </div>
+    </div>
+
+    <div class="api-content">
+      <div id="section_page">
+        <h1 class="section_title">Firepath</h1>
+        <p>
+          A Firebase reference represents a particular location in your Firebase and can be used for reading or writing data to that Firebase location.</p><p>Your initial Firebase reference will be constructed from a full, secure Firebase URL (e.g. https://SampleChat.firebaseIO-demo.com), but you can subsequently reference child locations by calling <a href="https://www.firebase.com/docs/javascript/firebase/child.html" class="functionLink">child( )</a> on an existing Firebase reference.  See <a href="https://www.firebase.com/docs/creating-references.html">Creating Firebase References</a> for more details.</p><p>Writing is done with <a href="https://www.firebase.com/docs/javascript/firebase/set.html" class="functionLink">set( )</a> and reading can be done with <a href="https://www.firebase.com/docs/javascript/firebase/on.html" class="functionLink">on( )</a> (see <a href="https://www.firebase.com/docs/writing-data.html">Writing Data to Firebase</a> and <a href="https://www.firebase.com/docs/reading-data.html">Reading Data from Firebase</a>).</p><p>Every Firebase reference has a corresponding URL, which can be retrieved by calling <a href="https://www.firebase.com/docs/javascript/firebase/tostring.html" class="functionLink">toString( )</a>.
+        </p>
+        <div class="hr"></div>
+
+        <h2>Member Functions</h2>
+        <div class="code_wrapper">
+          <a class="function_call" href="https://www.firebase.com/docs/javascript/firebase/new-firebase.html">
+              <span class="function_name">new Firebase( )</span>
+              <span class="function_description">Construct a new Firepath reference from a full Firebase URL.</span>
+          </a>
+          <a class="function_call" href="https://www.firebase.com/docs/javascript/firebase/child.html">
+              <span class="function_name">child( )</span>
+              <span class="function_description">Get a Firepath reference to a child location.</span>
+          </a>
+          <a class="function_call" href="https://www.firebase.com/docs/javascript/firebase/parent.html">
+              <span class="function_name">parent( )</span>
+              <span class="function_description">Get a Firepath reference for the parent location.</span>
+          </a>
+          <a class="function_call" href="https://www.firebase.com/docs/javascript/firebase/root.html">
+              <span class="function_name">root( )</span>
+              <span class="function_description">Get a Firepath reference for the root of the Firebase.</span>
+          </a>
+          <a class="function_call" href="https://www.firebase.com/docs/javascript/firebase/name.html">
+              <span class="function_name">name( )</span>
+              <span class="function_description">Get the last token of this location's full URL.</span>
+          </a>
+          <a class="function_call" href="https://www.firebase.com/docs/javascript/firebase/tostring.html">
+              <span class="function_name">toString( )</span>
+              <span class="function_description">Get the absolute URL corresponding to this location.</span>
+          </a>
+          <a class="function_call" href="https://www.firebase.com/docs/javascript/firebase/set.html">
+              <span class="function_name">set( )</span>
+              <span class="function_description">Write data into your Firebase.</span>
+          </a>
+          <a class="function_call" href="https://www.firebase.com/docs/javascript/firebase/update.html">
+              <span class="function_name">update( )</span>
+              <span class="function_description">Modify existing data in your Firebase.</span>
+          </a>
+          <a class="function_call" href="https://www.firebase.com/docs/javascript/firebase/remove.html">
+              <span class="function_name">remove( )</span>
+              <span class="function_description">Delete data from your Firebase.</span>
+          </a>
+          <a class="function_call" href="https://www.firebase.com/docs/javascript/firebase/push.html">
+              <span class="function_name">push( )</span>
+              <span class="function_description">Add data to a list using a unique name.</span>
+          </a>
+          <a class="function_call" href="https://www.firebase.com/docs/javascript/firebase/on.html">
+              <span class="function_name">on( )</span>
+              <span class="function_description">Attach a callback to read data and receive data changes.</span>
+          </a>
+          <a class="function_call" href="https://www.firebase.com/docs/javascript/firebase/off.html">
+              <span class="function_name">off( )</span>
+              <span class="function_description">Remove a callback attached with on( ).</span>
+          </a>
+          <a class="function_call" href="https://www.firebase.com/docs/javascript/firebase/once.html">
+              <span class="function_name">once( )</span>
+              <span class="function_description">Attach a callback that will only be triggered once.</span>
+          </a>
+        </div>
+
+        <h2>Tutorials</h2>
+        <p>
+          Traverse to a Firebase location (using <a href="https://www.firebase.com/docs/javascript/firebase/new-firebase.html" class="functionLink">new Firebase( )</a> and <a href="https://www.firebase.com/docs/javascript/firebase/child.html" class="functionLink">child( )</a>), and write some data.
+        </p>
+        <pre class="prettyprint prettyprinted" style=""><span class="kwd">var</span><span class="pln"> sampleChatRef </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Firebase</span><span class="pun">(</span><span class="str">'https://SampleChat.firebaseIO-demo.com'</span><span class="pun">);</span><span class="pln">
+</span><span class="kwd">var</span><span class="pln"> fredNameRef </span><span class="pun">=</span><span class="pln"> sampleChatRef</span><span class="pun">.</span><span class="pln">child</span><span class="pun">(</span><span class="str">'users/fred/name'</span><span class="pun">);</span><span class="pln">
+fredNameRef</span><span class="pun">.</span><span class="kwd">set</span><span class="pun">({</span><span class="pln">first</span><span class="pun">:</span><span class="pln"> </span><span class="str">'Fred'</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">last</span><span class="pun">:</span><span class="pln"> </span><span class="str">'Flintstone'</span><span class="pun">});</span></pre>
+        <p>
+          Now read the data back (and get notified whenever it changes).
+        </p>
+        <pre class="prettyprint prettyprinted" style=""><span class="pln">fredNameRef</span><span class="pun">.</span><span class="pln">on</span><span class="pun">(</span><span class="str">'value'</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">nameSnapshot</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  </span><span class="kwd">var</span><span class="pln"> y </span><span class="pun">=</span><span class="pln"> nameSnapshot</span><span class="pun">.</span><span class="pln">val</span><span class="pun">();</span><span class="pln">
+  </span><span class="com">// y now contains the object { first: 'Fred', last: 'Flintstone' }.</span><span class="pln">
+</span><span class="pun">});</span></pre>
+        <p>
+          Let's add a new chat message child to the message_list location using <a href="https://www.firebase.com/docs/javascript/firebase/push.html" class="functionLink">push( )</a>.
+        </p>
+        <pre class="prettyprint prettyprinted" style=""><span class="kwd">var</span><span class="pln"> messageListRef </span><span class="pun">=</span><span class="pln"> sampleChatRef</span><span class="pun">.</span><span class="pln">child</span><span class="pun">(</span><span class="str">'message_list'</span><span class="pun">);</span><span class="pln">
+messageListRef</span><span class="pun">.</span><span class="pln">push</span><span class="pun">({</span><span class="str">'user_id'</span><span class="pun">:</span><span class="pln"> </span><span class="str">'fred'</span><span class="pun">,</span><span class="pln"> </span><span class="str">'text'</span><span class="pun">:</span><span class="pln"> </span><span class="str">'Yabba Dabba Doo!'</span><span class="pun">});</span></pre>
+        <p>
+          And let's listen for new children added to the message_list location using <a href="https://www.firebase.com/docs/javascript/firebase/on.html" class="functionLink">on( )</a>.  We'll be notified of our 'Yabba Dabba Doo!' message as well as any other messages that were added in the past, and any new messages that get added in the future.
+        </p>
+        <pre class="prettyprint prettyprinted" style=""><span class="pln">messageListRef</span><span class="pun">.</span><span class="pln">on</span><span class="pun">(</span><span class="str">'child_added'</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">newMessageSnapshot</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  </span><span class="kwd">var</span><span class="pln"> userId </span><span class="pun">=</span><span class="pln"> newMessageSnapshot</span><span class="pun">.</span><span class="pln">child</span><span class="pun">(</span><span class="str">'user_id'</span><span class="pun">).</span><span class="pln">val</span><span class="pun">();</span><span class="pln">
+  </span><span class="kwd">var</span><span class="pln"> text </span><span class="pun">=</span><span class="pln"> newMessageSnapshot</span><span class="pun">.</span><span class="pln">child</span><span class="pun">(</span><span class="str">'text'</span><span class="pun">).</span><span class="pln">val</span><span class="pun">();</span><span class="pln">
+  </span><span class="com">// Do something with user_id and text.</span><span class="pln">
+</span><span class="pun">});</span></pre>
+        <div class="hr"></div>
+        <h2>References</h2>
+        <p>
+          <a href="https://www.firebase.com/docs/creating-references.html">Creating Firebase References</a><br><a href="https://www.firebase.com/docs/writing-data.html">Writing Data to Firebase</a><br><a href="https://www.firebase.com/docs/reading-data.html">Reading Data from Firebase</a><br>
+        </p>
+      </div>
+    </div>
+
+  </div>
+</div> <!-- #main end -->
+
+<script src="./Firepath_files/jquery.min.js"></script>
+<!--[if (gte IE 6)&(lte IE 8)]>
+<script src="../../../js/selectivizr.js"></script>
+<script src="../../../js/response.js"></script>
+<![endif]-->
+<script src="./Firepath_files/global.js"></script>
+<script src="./Firepath_files/analyze.js"></script>
+
+
+
+</body></html>
