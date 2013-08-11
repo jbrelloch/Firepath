@@ -30,7 +30,7 @@
 	<script type="text/javascript">
 		document.write('<pre>');
 		document.writeln('***************************************************<br/>');
-		var pathTest = new FirePath('https://firepath-fb.firebaseIO.com/*/b1[k and c1/d1=\'blah\']//d1');
+		var pathTest = new FirePath('https://firepath-fb.firebaseIO.com/*/b1[c2=1 and c1/d1=\'blah\']//d1');
 		//var pathTest = new FirePath('https://firepath-fb.firebaseIO.com/a1//*/d1');
 		document.writeln('<br/>***************************************************<br/>');
 		document.writeln('<br/>FUNCTION TESTS<br/>');
@@ -47,13 +47,12 @@
 		document.writeln(pathTest.name()+'<br/>***************************************************<br/>');
 		document.writeln('.toString()<br/>---------------------------------------------------<br/>');
 		document.writeln(pathTest.toString()+'<br/>***************************************************<br/>');
-		document.writeln('.processPath()<br/>---------------------------------------------------<br/>');
-		pathTest.set('placeholder',function(returned){
-			document.writeln(returned+'<br/>***************************************************<br/>');
-			document.write('</pre>');
-		});
+		document.writeln('<br/>***************************************************<br/>');
+		document.writeln('<br/>***************************************************<br/>');
+		var fullTree = new FirePath('https://firepath-fb.firebaseIO.com//*')
+		document.writeln('</pre>');
 	</script>
-
+	<p id='tree'></p>
 </body>
 
 </html>

@@ -30,9 +30,9 @@ function FirePath(path)
 			!function closure2(j){
 				currentDataRef.once('value', function(dataSnapshot) {
 					
-					//alert("basePath: "+pathStrings[j]+" current section: "+pathSections[count].name+" rule to test: "+pathSections[count].rule);
+					alert("basePath: "+pathStrings[j]+" current section: "+pathSections[count].name+" rule to test: "+pathSections[count].rule);
 					var testResult = testRulePart(pathSections[count].rule, dataSnapshot);
-					//alert("result: "+testResult);
+					alert("result: "+testResult);
 					if((testResult != null)?testResult:false)
 					{
 						newPathStrings.push(pathStrings[j]);
@@ -251,7 +251,6 @@ function FirePath(path)
 			}
 			else
 			{
-                //just a double slash operator, every node at any level that matches
 				var finishCount = 0;
 				for (var j = 0; j < pathStrings.length; j++) 
 				{
@@ -304,7 +303,6 @@ function FirePath(path)
 		}
 		else if(/^\*$/.test(pathSections[count].name))
 		{
-            //star operator, match every node at current level
 			var finishCount = 0;
 			for (var j = 0; j < pathStrings.length; j++) 
 			{
@@ -478,7 +476,7 @@ function FirePath(path)
 		processPath([],0,function(){
 			var finishCount = 0;
 			var errors = [];
-			for (var i = 0; i < fireBasePaths.length; i++) 
+			for (var i = 1; i < fireBasePaths.length; i++) 
 			{
 				fireBasePaths[i].set(value,function(error){
 					errors.push(error);
@@ -498,7 +496,7 @@ function FirePath(path)
 		processPath([],0,function(){
 			var finishCount = 0;
 			var errors = [];
-			for (var i = 0; i < fireBasePaths.length; i++) 
+			for (var i = 1; i < fireBasePaths.length; i++) 
 			{
 				fireBasePaths[i].update(value,function(error){
 					errors.push(error);
@@ -518,7 +516,7 @@ function FirePath(path)
 		processPath([],0,function(){
 			var finishCount = 0;
 			var errors = [];
-			for (var i = 0; i < fireBasePaths.length; i++) 
+			for (var i = 1; i < fireBasePaths.length; i++) 
 			{
 				fireBasePaths[i].remove(function(error){
 					errors.push(error);
@@ -540,7 +538,7 @@ function FirePath(path)
 		processPath([],0,function(){
 			var finishCount = 0;
 			var errors = [];
-			for (var i = 0; i < fireBasePaths.length; i++) 
+			for (var i = 1; i < fireBasePaths.length; i++) 
 			{
 				fireBasePaths[i].push(value,function(error){
 					errors.push(error);
@@ -560,24 +558,18 @@ function FirePath(path)
 		processPath([],0,function(){
 			var finishCount = 0;
 			var errors = [];
-			for (var i = 0; i < fireBasePaths.length; i++) 
+			for (var i = 1; i < fireBasePaths.length; i++) 
 			{
-				switch(eventType)
-				{
-					case 'value':
-					case 'child_removed':
-						fireBasePaths[i].on(eventType,function(dataSnapshot){
-							callback(dataSnapshot);
-						});
-						break;
-					case 'child_added':
-					case 'child_changed':
-					case 'child_moved':
-						fireBasePaths[i].on(eventType,function(childSnapshot, prevSnapshot){
-							callback(childSnapshot, prevSnapshot)
-						});
-						break;
-				}
+				fireBasePaths[i].on(eventType,function(error){
+					errors.push(error);
+					finishCount++;
+					if(finishCount == fireBasePaths.length)
+					{
+						if(optOnComplete != null){
+							return optOnComplete(errors);
+						}
+					}
+				});
 			};
 		});
 	};
