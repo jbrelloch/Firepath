@@ -1,4 +1,4 @@
-var DEBUG = true;
+var DEBUG = false;
 
 var FirePathSectionRuleType = { "path": 0, 
              "string": 1, 
@@ -8,8 +8,11 @@ var FirePathSectionRuleType = { "path": 0,
              "rulePart": 5,
              "processed": 6 };
 
-function FirePath(path)
+function FirePath(path, optDEBUG)
 {
+	if(optDEBUG != null)
+		DEBUG = optDEBUG;
+
 	var parser = new FirePathParser();
 
 	var pathSections = parser.parse(path);
@@ -17,6 +20,10 @@ function FirePath(path)
 	var basePath = path;
 
 	var fireBasePaths = [];
+
+	this.getCurrentPaths = function(){
+		return fireBasePaths;
+	};
 
 	function processRule(pathStrings,count,callback)
 	{
@@ -434,7 +441,8 @@ function FirePath(path)
 			return new FirePath(newPath);
 		}
 	};
-	this.parent = function()
+	this.parent = function()//MAY NEED TO RETHINK THIS ONE ((https://firepath-fb.firebaseio.com/*/b1).parent() 
+							//								--- is this https://firepath-fb.firebaseio.com/* OR https://firepath-fb.firebaseio.com/*[b1 exists])
 	{
 		if(pathSections.length === 1)
 		{
@@ -478,19 +486,26 @@ function FirePath(path)
 		processPath([],0,function(){
 			var finishCount = 0;
 			var errors = [];
-			for (var i = 0; i < fireBasePaths.length; i++) 
+			if(fireBasePaths.length > 0)//OUTER IF SUBJECT TO CHANGE (what do we do when no path's are found?)
 			{
-				fireBasePaths[i].set(value,function(error){
-					errors.push(error);
-					finishCount++;
-					if(finishCount == fireBasePaths.length)
-					{
-						if(optOnComplete != null){
-							return optOnComplete(errors);
+				for (var i = 0; i < fireBasePaths.length; i++) 
+				{
+					fireBasePaths[i].set(value,function(error){
+						errors.push(error);
+						finishCount++;
+						if(finishCount == fireBasePaths.length)
+						{
+							if(optOnComplete != null){
+								return optOnComplete(errors);
+							}
 						}
-					}
-				});
-			};
+					});
+				};
+			}
+			else
+			{
+				alert('No paths found!');
+			}
 		});
 	};
 	this.update = function(value,optOnComplete)
@@ -498,19 +513,26 @@ function FirePath(path)
 		processPath([],0,function(){
 			var finishCount = 0;
 			var errors = [];
-			for (var i = 0; i < fireBasePaths.length; i++) 
+			if(fireBasePaths.length > 0)//OUTER IF SUBJECT TO CHANGE (what do we do when no path's are found?)
 			{
-				fireBasePaths[i].update(value,function(error){
-					errors.push(error);
-					finishCount++;
-					if(finishCount == fireBasePaths.length)
-					{
-						if(optOnComplete != null){
-							return optOnComplete(errors);
+				for (var i = 0; i < fireBasePaths.length; i++) 
+				{
+					fireBasePaths[i].update(value,function(error){
+						errors.push(error);
+						finishCount++;
+						if(finishCount == fireBasePaths.length)
+						{
+							if(optOnComplete != null){
+								return optOnComplete(errors);
+							}
 						}
-					}
-				});
-			};
+					});
+				};
+			}
+			else
+			{
+				alert('No paths found!');
+			}
 		});
 	};
 	this.remove = function(optOnComplete)
@@ -518,19 +540,26 @@ function FirePath(path)
 		processPath([],0,function(){
 			var finishCount = 0;
 			var errors = [];
-			for (var i = 0; i < fireBasePaths.length; i++) 
+			if(fireBasePaths.length > 0)//OUTER IF SUBJECT TO CHANGE (what do we do when no path's are found?)
 			{
-				fireBasePaths[i].remove(function(error){
-					errors.push(error);
-					finishCount++;
-					if(finishCount == fireBasePaths.length)
-					{
-						if(optOnComplete != null){
-							return optOnComplete(errors);
+				for (var i = 0; i < fireBasePaths.length; i++) 
+				{
+					fireBasePaths[i].remove(function(error){
+						errors.push(error);
+						finishCount++;
+						if(finishCount == fireBasePaths.length)
+						{
+							if(optOnComplete != null){
+								return optOnComplete(errors);
+							}
 						}
-					}
-				});
-			};
+					});
+				};
+			}
+			else
+			{
+				alert('No paths found!');
+			}
 		});
 	};
 	//Value is supposed to be optional, but i need the callback and I 
@@ -540,19 +569,26 @@ function FirePath(path)
 		processPath([],0,function(){
 			var finishCount = 0;
 			var errors = [];
-			for (var i = 0; i < fireBasePaths.length; i++) 
+			if(fireBasePaths.length > 0)//OUTER IF SUBJECT TO CHANGE (what do we do when no path's are found?)
 			{
-				fireBasePaths[i].push(value,function(error){
-					errors.push(error);
-					finishCount++;
-					if(finishCount == fireBasePaths.length)
-					{
-						if(optOnComplete != null){
-							return optOnComplete(errors);
+				for (var i = 0; i < fireBasePaths.length; i++) 
+				{
+					fireBasePaths[i].push(value,function(error){
+						errors.push(error);
+						finishCount++;
+						if(finishCount == fireBasePaths.length)
+						{
+							if(optOnComplete != null){
+								return optOnComplete(errors);
+							}
 						}
-					}
-				});
-			};
+					});
+				};
+			}
+			else
+			{
+				alert('No paths found!');
+			}
 		});
 	};
 	this.on = function(eventType,callback,optCancelCallback,optContext)
@@ -560,34 +596,235 @@ function FirePath(path)
 		processPath([],0,function(){
 			var finishCount = 0;
 			var errors = [];
-			for (var i = 0; i < fireBasePaths.length; i++) 
+			if(fireBasePaths.length > 0)//OUTER IF SUBJECT TO CHANGE (what do we do when no path's are found?)
 			{
-				switch(eventType)
+				for (var i = 0; i < fireBasePaths.length; i++) 
 				{
-					case 'value':
-					case 'child_removed':
-						fireBasePaths[i].on(eventType,function(dataSnapshot){
-							callback(dataSnapshot);
-						});
-						break;
-					case 'child_added':
-					case 'child_changed':
-					case 'child_moved':
-						fireBasePaths[i].on(eventType,function(childSnapshot, prevSnapshot){
-							callback(childSnapshot, prevSnapshot)
-						});
-						break;
-				}
-			};
+					switch(eventType)
+					{
+						case 'value':
+						case 'child_removed':
+							if(optCancelCallback != null && optContext != null)
+							{
+								fireBasePaths[i].on(eventType,function(dataSnapshot){
+									callback(dataSnapshot);
+								},function(){
+									optCancelCallback()
+								},optContext);
+							}
+							else if(optCancelCallback != null)
+							{
+								fireBasePaths[i].on(eventType,function(dataSnapshot){
+									callback(dataSnapshot);
+								},function(){
+									optCancelCallback()
+								});
+							}
+							else if(optContext != null)
+							{
+								fireBasePaths[i].on(eventType,function(dataSnapshot){
+									callback(dataSnapshot);
+								},optContext);
+							}
+							else
+							{
+								fireBasePaths[i].on(eventType,function(dataSnapshot){
+									callback(dataSnapshot);
+								});
+							}
+							break;
+						case 'child_added':
+						case 'child_changed':
+						case 'child_moved':
+							if(optCancelCallback != null && optContext != null)
+							{
+								fireBasePaths[i].on(eventType,function(childSnapshot, prevSnapshot){
+									callback(childSnapshot, prevSnapshot);
+								},function(){
+									optCancelCallback()
+								},optContext);
+							}
+							else if(optCancelCallback != null)
+							{
+								fireBasePaths[i].on(eventType,function(childSnapshot, prevSnapshot){
+									callback(childSnapshot, prevSnapshot);
+								},function(){
+									optCancelCallback()
+								});
+							}
+							else if(optContext != null)
+							{
+								fireBasePaths[i].on(eventType,function(childSnapshot, prevSnapshot){
+									callback(childSnapshot, prevSnapshot);
+								},optContext);
+							}
+							else
+							{
+								fireBasePaths[i].on(eventType,function(childSnapshot, prevSnapshot){
+									callback(childSnapshot, prevSnapshot);
+								});
+							}
+							break;
+					}
+				};
+			}
+			else
+			{
+				alert('No paths found!');
+			}
 		});
 	};
 	this.off = function(optEventType,optCallback,optContext)
 	{
-
+		processPath([],0,function(){
+			var finishCount = 0;
+			var errors = [];
+			if(fireBasePaths.length > 0)//OUTER IF SUBJECT TO CHANGE (what do we do when no path's are found?)
+			{
+				for (var i = 0; i < fireBasePaths.length; i++) 
+				{
+					switch(optEventType)
+					{
+						case 'value':
+						case 'child_removed':
+							if(optCallback != null && optContext != null)
+							{
+								fireBasePaths[i].off(optEventType,function(dataSnapshot){
+									optCallback(dataSnapshot);
+								},optContext);
+							}
+							else if(optCallback != null)
+							{
+								fireBasePaths[i].off(optEventType,function(dataSnapshot){
+									optCallback(dataSnapshot);
+								});
+							}
+							else if(optContext != null)
+							{
+								fireBasePaths[i].off(optEventType,optContext);
+							}
+							else
+							{
+								fireBasePaths[i].off(optEventType);
+							}
+							break;
+						case 'child_added':
+						case 'child_changed':
+						case 'child_moved':
+							if(optCallback != null && optContext != null)
+							{
+								fireBasePaths[i].off(optEventType,function(dataSnapshot){
+									optCallback(dataSnapshot);
+								},optContext);
+							}
+							else if(optCallback != null)
+							{
+								fireBasePaths[i].off(optEventType,function(dataSnapshot){
+									optCallback(dataSnapshot);
+								});
+							}
+							else if(optContext != null)
+							{
+								fireBasePaths[i].off(optEventType,optContext);
+							}
+							else
+							{
+								fireBasePaths[i].off(optEventType);
+							}
+							break;
+						default:
+							fireBasePaths[i].off();
+					}
+				};
+			}
+			else
+			{
+				alert('No paths found!');
+			}
+		});
 	};
 	this.once = function(eventType,successCallback,optFailureCallback,optContext)
 	{
-
+		processPath([],0,function(){
+			var finishCount = 0;
+			var errors = [];
+			if(fireBasePaths.length > 0)//OUTER IF SUBJECT TO CHANGE (what do we do when no path's are found?)
+			{
+				for (var i = 0; i < fireBasePaths.length; i++) 
+				{
+					switch(eventType)
+					{
+						case 'value':
+						case 'child_removed':
+							if(optFailureCallback != null && optContext != null)
+							{
+								fireBasePaths[i].once(eventType,function(dataSnapshot){
+									successCallback(dataSnapshot);
+								},function(){
+									optFailureCallback()
+								},optContext);
+							}
+							else if(optFailureCallback != null)
+							{
+								fireBasePaths[i].once(eventType,function(dataSnapshot){
+									successCallback(dataSnapshot);
+								},function(){
+									optFailureCallback()
+								});
+							}
+							else if(optContext != null)
+							{
+								fireBasePaths[i].once(eventType,function(dataSnapshot){
+									successCallback(dataSnapshot);
+								},optContext);
+							}
+							else
+							{
+								fireBasePaths[i].once(eventType,function(dataSnapshot){
+									successCallback(dataSnapshot);
+								});
+							}
+							break;
+						case 'child_added':
+						case 'child_changed':
+						case 'child_moved':
+							if(optFailureCallback != null && optContext != null)
+							{
+								fireBasePaths[i].once(eventType,function(childSnapshot, prevSnapshot){
+									successCallback(dataSnapshot);
+								},function(){
+									optFailureCallback()
+								},optContext);
+							}
+							else if(optFailureCallback != null)
+							{
+								fireBasePaths[i].once(eventType,function(childSnapshot, prevSnapshot){
+									successCallback(dataSnapshot);
+								},function(){
+									optFailureCallback()
+								});
+							}
+							else if(optContext != null)
+							{
+								fireBasePaths[i].once(eventType,function(childSnapshot, prevSnapshot){
+									successCallback(dataSnapshot);
+								},optContext);
+							}
+							else
+							{
+								fireBasePaths[i].once(eventType,function(childSnapshot, prevSnapshot){
+									successCallback(dataSnapshot);
+								});
+							}
+							break;
+					}
+				};
+			}
+			else
+			{
+				alert('No paths found!');
+			}
+		});
 	};
 
 	//may or may not support these

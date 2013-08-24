@@ -32,7 +32,8 @@
 <a href="project2.php">Project 2 part 3b</a><br/>
 <a href="http://tinman.cs.gsu.edu:9999/~jbrelloch/servlet/SDB">Project 4</a><br/>
 <a href="tictac.php">Tic-Tac-Toe Using Firebase</a><br/><br/>
-<a href="FirePathTest.php">FirePath Test Page (Nothing to See Here)</a>
+<a href="FirePathTest.php">FirePath Test Page (Nothing to See Here)</a><br/>
+<a href="FirePathTester.php">FirePath Path Tester</a>
 
 </body>
 
