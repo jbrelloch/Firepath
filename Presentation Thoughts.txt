@@ -1,0 +1,13 @@
+Introduction
+NoSQL
+Firebase
+XPath
+A note on javascript closures
+Parsing xpath
+	Nodes
+	Rules
+Processing Paths with firebase
+	At execution
+	Always on
+		"eventually consistent"
+
