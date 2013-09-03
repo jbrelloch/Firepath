@@ -49,6 +49,11 @@
 		document.writeln('***************************************************');
 		document.writeln('***************************************************<br/>');
 		document.writeln('</pre>');
+
+		var testFB = new Firebase('https://firepath-fb.firebaseIO.com/');
+		testFB.on('value',function(snapshot){
+			alert('fired');
+		});
 	</script>
 	<p id='tree'></p>
 </body>

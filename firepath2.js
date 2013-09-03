@@ -19,30 +19,32 @@ function FirePath(path, optDEBUG)
 
 	var basePath = path;
 
-	var fireBasePaths = [];
+	var firePathRoot = new ArrangedFirePathSection(null,pathSections[0],pathSections[0].name,pathSections.slice(1));
 
-	//Arrange Sections////////////////////////////////////
+	firePathRoot.ArrangeSection();
 
-	function ArrangeSection (parentSection, pathSectionsRemaining, ruleToEnforce)
-	{
-		if(parentSection == null)
-		{
-			var sectionToArrange = new ArrangedFirePathSection(pathSectionsRemaining[0]);
-
-			var newPathSectionsRemaining = pathSectionsRemaining.slice(1);
-			
-			ArrangeSection(sectionToArrange,,null);
-		}
-
-	}
-
-	ArrangeSection(null, pathSections, null)
-
-	//////////////////////////////////////////////////////
-
-	this.getCurrentPaths = function(){
-		return fireBasePaths;
+	this.getRootPath = function(){
+		return firePathRoot;
 	};
+
+	function getPaths()
+	{
+		var notDone = true;
+		var nodesToSearch = [firePathRoot];
+		var currentPaths = [];
+
+		while(notDone)
+		{
+			for(var i = 0; i<nodesToSearch.length; i++)
+			{
+				var currentNode = nodesToSearch[i];
+				for(var j = 0; j<currentNode.subSections.length)
+				{
+					
+				}
+			}
+		}
+	}
 
 	this.child = function(childPath)
 	{
@@ -107,348 +109,26 @@ function FirePath(path, optDEBUG)
 	};
 	this.set = function(value,optOnComplete)
 	{
-		processPath([],0,function(){
-			var finishCount = 0;
-			var errors = [];
-			if(fireBasePaths.length > 0)//OUTER IF SUBJECT TO CHANGE (what do we do when no path's are found?)
-			{
-				for (var i = 0; i < fireBasePaths.length; i++) 
-				{
-					fireBasePaths[i].set(value,function(error){
-						errors.push(error);
-						finishCount++;
-						if(finishCount == fireBasePaths.length)
-						{
-							if(optOnComplete != null){
-								return optOnComplete(errors);
-							}
-						}
-					});
-				};
-			}
-			else
-			{
-				alert('No paths found!');
-			}
-		});
 	};
 	this.update = function(value,optOnComplete)
 	{
-		processPath([],0,function(){
-			var finishCount = 0;
-			var errors = [];
-			if(fireBasePaths.length > 0)//OUTER IF SUBJECT TO CHANGE (what do we do when no path's are found?)
-			{
-				for (var i = 0; i < fireBasePaths.length; i++) 
-				{
-					fireBasePaths[i].update(value,function(error){
-						errors.push(error);
-						finishCount++;
-						if(finishCount == fireBasePaths.length)
-						{
-							if(optOnComplete != null){
-								return optOnComplete(errors);
-							}
-						}
-					});
-				};
-			}
-			else
-			{
-				alert('No paths found!');
-			}
-		});
 	};
 	this.remove = function(optOnComplete)
 	{
-		processPath([],0,function(){
-			var finishCount = 0;
-			var errors = [];
-			if(fireBasePaths.length > 0)//OUTER IF SUBJECT TO CHANGE (what do we do when no path's are found?)
-			{
-				for (var i = 0; i < fireBasePaths.length; i++) 
-				{
-					fireBasePaths[i].remove(function(error){
-						errors.push(error);
-						finishCount++;
-						if(finishCount == fireBasePaths.length)
-						{
-							if(optOnComplete != null){
-								return optOnComplete(errors);
-							}
-						}
-					});
-				};
-			}
-			else
-			{
-				alert('No paths found!');
-			}
-		});
 	};
 	//Value is supposed to be optional, but i need the callback and I 
 	// dont think it will work with a callback without a value
 	this.push = function(value,optOnComplete)
 	{
-		processPath([],0,function(){
-			var finishCount = 0;
-			var errors = [];
-			if(fireBasePaths.length > 0)//OUTER IF SUBJECT TO CHANGE (what do we do when no path's are found?)
-			{
-				for (var i = 0; i < fireBasePaths.length; i++) 
-				{
-					fireBasePaths[i].push(value,function(error){
-						errors.push(error);
-						finishCount++;
-						if(finishCount == fireBasePaths.length)
-						{
-							if(optOnComplete != null){
-								return optOnComplete(errors);
-							}
-						}
-					});
-				};
-			}
-			else
-			{
-				alert('No paths found!');
-			}
-		});
 	};
 	this.on = function(eventType,callback,optCancelCallback,optContext)
 	{
-		processPath([],0,function(){
-			var finishCount = 0;
-			var errors = [];
-			if(fireBasePaths.length > 0)//OUTER IF SUBJECT TO CHANGE (what do we do when no path's are found?)
-			{
-				for (var i = 0; i < fireBasePaths.length; i++) 
-				{
-					switch(eventType)
-					{
-						case 'value':
-						case 'child_removed':
-							if(optCancelCallback != null && optContext != null)
-							{
-								fireBasePaths[i].on(eventType,function(dataSnapshot){
-									callback(dataSnapshot);
-								},function(){
-									optCancelCallback()
-								},optContext);
-							}
-							else if(optCancelCallback != null)
-							{
-								fireBasePaths[i].on(eventType,function(dataSnapshot){
-									callback(dataSnapshot);
-								},function(){
-									optCancelCallback()
-								});
-							}
-							else if(optContext != null)
-							{
-								fireBasePaths[i].on(eventType,function(dataSnapshot){
-									callback(dataSnapshot);
-								},optContext);
-							}
-							else
-							{
-								fireBasePaths[i].on(eventType,function(dataSnapshot){
-									callback(dataSnapshot);
-								});
-							}
-							break;
-						case 'child_added':
-						case 'child_changed':
-						case 'child_moved':
-							if(optCancelCallback != null && optContext != null)
-							{
-								fireBasePaths[i].on(eventType,function(childSnapshot, prevSnapshot){
-									callback(childSnapshot, prevSnapshot);
-								},function(){
-									optCancelCallback()
-								},optContext);
-							}
-							else if(optCancelCallback != null)
-							{
-								fireBasePaths[i].on(eventType,function(childSnapshot, prevSnapshot){
-									callback(childSnapshot, prevSnapshot);
-								},function(){
-									optCancelCallback()
-								});
-							}
-							else if(optContext != null)
-							{
-								fireBasePaths[i].on(eventType,function(childSnapshot, prevSnapshot){
-									callback(childSnapshot, prevSnapshot);
-								},optContext);
-							}
-							else
-							{
-								fireBasePaths[i].on(eventType,function(childSnapshot, prevSnapshot){
-									callback(childSnapshot, prevSnapshot);
-								});
-							}
-							break;
-					}
-				};
-			}
-			else
-			{
-				alert('No paths found!');
-			}
-		});
 	};
 	this.off = function(optEventType,optCallback,optContext)
 	{
-		processPath([],0,function(){
-			var finishCount = 0;
-			var errors = [];
-			if(fireBasePaths.length > 0)//OUTER IF SUBJECT TO CHANGE (what do we do when no path's are found?)
-			{
-				for (var i = 0; i < fireBasePaths.length; i++) 
-				{
-					switch(optEventType)
-					{
-						case 'value':
-						case 'child_removed':
-							if(optCallback != null && optContext != null)
-							{
-								fireBasePaths[i].off(optEventType,function(dataSnapshot){
-									optCallback(dataSnapshot);
-								},optContext);
-							}
-							else if(optCallback != null)
-							{
-								fireBasePaths[i].off(optEventType,function(dataSnapshot){
-									optCallback(dataSnapshot);
-								});
-							}
-							else if(optContext != null)
-							{
-								fireBasePaths[i].off(optEventType,optContext);
-							}
-							else
-							{
-								fireBasePaths[i].off(optEventType);
-							}
-							break;
-						case 'child_added':
-						case 'child_changed':
-						case 'child_moved':
-							if(optCallback != null && optContext != null)
-							{
-								fireBasePaths[i].off(optEventType,function(dataSnapshot){
-									optCallback(dataSnapshot);
-								},optContext);
-							}
-							else if(optCallback != null)
-							{
-								fireBasePaths[i].off(optEventType,function(dataSnapshot){
-									optCallback(dataSnapshot);
-								});
-							}
-							else if(optContext != null)
-							{
-								fireBasePaths[i].off(optEventType,optContext);
-							}
-							else
-							{
-								fireBasePaths[i].off(optEventType);
-							}
-							break;
-						default:
-							fireBasePaths[i].off();
-					}
-				};
-			}
-			else
-			{
-				alert('No paths found!');
-			}
-		});
 	};
 	this.once = function(eventType,successCallback,optFailureCallback,optContext)
 	{
-		processPath([],0,function(){
-			var finishCount = 0;
-			var errors = [];
-			if(fireBasePaths.length > 0)//OUTER IF SUBJECT TO CHANGE (what do we do when no path's are found?)
-			{
-				for (var i = 0; i < fireBasePaths.length; i++) 
-				{
-					switch(eventType)
-					{
-						case 'value':
-						case 'child_removed':
-							if(optFailureCallback != null && optContext != null)
-							{
-								fireBasePaths[i].once(eventType,function(dataSnapshot){
-									successCallback(dataSnapshot);
-								},function(){
-									optFailureCallback()
-								},optContext);
-							}
-							else if(optFailureCallback != null)
-							{
-								fireBasePaths[i].once(eventType,function(dataSnapshot){
-									successCallback(dataSnapshot);
-								},function(){
-									optFailureCallback()
-								});
-							}
-							else if(optContext != null)
-							{
-								fireBasePaths[i].once(eventType,function(dataSnapshot){
-									successCallback(dataSnapshot);
-								},optContext);
-							}
-							else
-							{
-								fireBasePaths[i].once(eventType,function(dataSnapshot){
-									successCallback(dataSnapshot);
-								});
-							}
-							break;
-						case 'child_added':
-						case 'child_changed':
-						case 'child_moved':
-							if(optFailureCallback != null && optContext != null)
-							{
-								fireBasePaths[i].once(eventType,function(childSnapshot, prevSnapshot){
-									successCallback(dataSnapshot);
-								},function(){
-									optFailureCallback()
-								},optContext);
-							}
-							else if(optFailureCallback != null)
-							{
-								fireBasePaths[i].once(eventType,function(childSnapshot, prevSnapshot){
-									successCallback(dataSnapshot);
-								},function(){
-									optFailureCallback()
-								});
-							}
-							else if(optContext != null)
-							{
-								fireBasePaths[i].once(eventType,function(childSnapshot, prevSnapshot){
-									successCallback(dataSnapshot);
-								},optContext);
-							}
-							else
-							{
-								fireBasePaths[i].once(eventType,function(childSnapshot, prevSnapshot){
-									successCallback(dataSnapshot);
-								});
-							}
-							break;
-					}
-				};
-			}
-			else
-			{
-				alert('No paths found!');
-			}
-		});
 	};
 
 	//may or may not support these
@@ -509,13 +189,164 @@ function FirePathSection(unparsedSection)
 	}
 }
 
-function ArrangedFirePathSection(firepathSection)
+function ArrangedFirePathSection(parentSection,firepathSection, path, pathSectionsBelow)
 {
 	this.name = firepathSection.name;
-	this.unparsedSection = firepathSection.unparsedSection;
+	this.path = path;
+	this.dataRef = new Firebase(this.path);
 	this.rule = firepathSection.rule;
+	this.ruleStatus = false;
+	this.terminus = false;
+	this.terminusBelow = false;
+
+	this.parentSection = parentSection;
+
+	this.setTerminus = function(terminusBool)
+	{
+		this.terminusBelow = terminusBool;
+		if(this.parentSection != null)
+		{
+			this.parentSection.setTerminus(terminusBool);
+		}
+	};
 
 	this.subSections = new Array();
+	this.pathSectionsBelow = pathSectionsBelow;
+
+	this.ArrangeSection = function()
+	{
+		//add rule listener if rule is not null
+		if(this.rule != null)
+		{
+			!function closure0(this2){
+				this2.dataRef.on('value', function(dataSnapshot){
+					var testResult = this2.rule.testRulePart(dataSnapshot);
+
+					if((testResult != null)?testResult:false)
+					{
+						this2.ruleStatus = true;
+					}
+					else
+					{
+						this2.ruleStatus = false;
+					}
+				});
+			}(this);
+		}
+		else //set the rule status to true
+		{
+			this.ruleStatus = true;
+		}
+
+		if(this.pathSectionsBelow.length == 0)
+		{
+			this.terminus = true;
+			if(parentSection != null)
+			{
+				this.setTerminus(true);
+			}
+			this.terminusBelow = false;
+		}
+		else
+		{
+			//add listeners based off the content of the next section
+			if(/^\/.+/.test(this.pathSectionsBelow[0].name))
+			{
+				//search everywhere below this node (// operator found)
+				!function closure1(this2){
+					this2.dataRef.on('value', function(dataSnapshot){
+						this2.subSections = [];//redo everything below this node
+
+						var notDone = true;
+						var snapsToSearch = [dataSnapshot];
+						var newSnapsToSearch = [];
+
+						while(notDone)
+						{
+							notDone = false;
+							for (var k = 0; k < snapsToSearch.length; k++) 
+							{
+								snapsToSearch[k].forEach(function(childSnapshot){
+									newSnapsToSearch.push(childSnapshot);
+									if(/^\/\*$/.test(this2.pathSectionsBelow[0].name) || (this2.pathSectionsBelow[0].name.slice(1) == childSnapshot.name()))
+									{
+										//double slash operator plus a star operator OR snapshot name matches what we are looking for
+										var newSection = new ArrangedFirePathSection(this2,this2.pathSectionsBelow[0],childSnapshot.ref().toString(),pathSectionsBelow.slice(1));
+										this2.subSections.push(newSection);
+										newSection.ArrangeSection();
+									}
+								});
+							}
+
+							if(newSnapsToSearch.length > 0)
+							{
+								notDone = true;
+							}
+							snapsToSearch = newSnapsToSearch;
+							newSnapsToSearch = [];
+						}
+					});
+				}(this);
+			}
+			else if(/^\*$/.test(this.pathSectionsBelow[0].name))
+			{
+	            //star operator, match every node at current level
+				!function closure2(this2){
+		            this2.dataRef.on('child_added', function(childSnapshot){
+		            	var newSection = new ArrangedFirePathSection(this2,this2.pathSectionsBelow[0],childSnapshot.ref().toString(),pathSectionsBelow.slice(1));
+						this2.subSections.push(newSection);
+						newSection.ArrangeSection();
+					});
+		        }(this);
+				!function closure3(this2){
+					this2.dataRef.on('child_removed', function(oldChildSnapshot){
+						var indexOfSnap = -1;
+						for(var j = 0; j < this2.subSections.length; j++)
+						{
+							if(this2.subSections[j].path = oldChildSnapshot.ref())
+							{
+								indexOfSnap = j;
+							}
+						}
+						if(indexOfSnap != -1)
+						{
+							this2.subSections.splice(j,1);
+						}
+					});
+				}(this);
+	        }
+	        else
+			{
+				//just a normal node
+				!function closure4(this2){
+					this2.dataRef.on('child_added', function(childSnapshot){
+						if(this2.pathSectionsBelow[0].name == childSnapshot.name())
+						{
+							var newSection = new ArrangedFirePathSection(this2,this2.pathSectionsBelow[0],childSnapshot.ref().toString(),pathSectionsBelow.slice(1));
+							this2.subSections.push(newSection);
+							newSection.ArrangeSection();
+						}
+					});
+				}(this);
+				!function closure5(this2){
+					this2.dataRef.on('child_removed', function(oldChildSnapshot){
+						var indexOfSnap = -1;
+						for(var j = 0; j < this2.subSections.length; j++)
+						{
+							if(this2.subSections[j].path = oldChildSnapshot.ref())
+							{
+								indexOfSnap = j;
+							}
+						}
+						if(indexOfSnap != -1)
+						{
+							this2.subSections.splice(j,1);
+						}
+					});
+				}(this);
+			}
+		}
+	}
 }
 
 function FirePathSectionRule(unparsedRule)
@@ -577,4 +408,128 @@ function FirePathSectionRule(unparsedRule)
 	this.toString = function(){
 		return ruleString;
 	};
+
+	this.testRulePart = function(snapShotBase){
+		//alert("processing rule: "+rule+" from ref: "+snapShotBase.ref().toString());
+		var tempRuleType = this.elementType.slice(0);
+		var tempRuleValue = this.elementValue.slice(0);
+		var ultimateFail = false;
+		//order is ruleParts,paths,operators,conjunctions
+		for (var i = 0; i < 4; i++) {
+			//alert("Outer loop count: "+i);
+			var notDone = true;
+			var pointer = 0;
+			while(notDone)
+			{
+				//alert("Inner loop count: "+pointer+" ruleType: "+tempRuleType[pointer]+" conj rule type: "+FirePathSectionRuleType.conjunction);
+				if(i==0 && tempRuleType[pointer]==FirePathSectionRuleType.rulePart)
+				{
+					try
+					{
+						tempRuleValue[pointer] = testRulePart(tempRuleValue[pointer],snapShotBase);
+						tempRuleType[pointer] = FirePathSectionRuleType.processed;
+					}
+					catch(err)
+					{
+						ultimateFail = true;
+					}
+				}
+				else if(i==1 && tempRuleType[pointer]==FirePathSectionRuleType.path)
+				{
+					//alert("resolving path: "+tempRuleValue[pointer]+" from ref: "+snapShotBase.ref().toString());
+					try
+					{
+						tempRuleValue[pointer] = snapShotBase.child(tempRuleValue[pointer]).val();
+						tempRuleType[pointer] = FirePathSectionRuleType.string;
+					}
+					catch(err)
+					{
+						ultimateFail = true;
+					}
+					//alert("path resolved: "+tempRuleValue[pointer]);
+				}
+				else if(i==2 && tempRuleType[pointer]==FirePathSectionRuleType.operator)
+				{
+					//alert("resolving operator: "+tempRuleValue[pointer]+" between: "+tempRuleValue[pointer-1]+" and "+tempRuleValue[pointer+1]);
+					try
+					{
+						var tempHolder = null;
+						if(tempRuleValue[pointer] == "=")
+						{
+							tempHolder = (tempRuleValue[pointer-1] == tempRuleValue[pointer+1]);
+						}
+						else if(tempRuleValue[pointer] == "<=")
+						{
+							tempHolder = (tempRuleValue[pointer-1] <= tempRuleValue[pointer+1]);
+						}
+						else if(tempRuleValue[pointer] == ">=")
+						{
+							tempHolder = (tempRuleValue[pointer-1] >= tempRuleValue[pointer+1]);
+						}
+						else if(tempRuleValue[pointer] == "!=")
+						{
+							tempHolder = (tempRuleValue[pointer-1] != tempRuleValue[pointer+1]);
+						}
+						tempRuleValue.splice(pointer-1,3,tempHolder);
+						tempRuleType.splice(pointer-1,3,FirePathSectionRuleType.processed);
+						pointer--;
+					}
+					catch(err)
+					{
+						ultimateFail = true;
+					}
+					//alert("resolved operator: "+tempRuleValue[pointer]);
+				}
+				else if(i==3 && tempRuleType[pointer]==FirePathSectionRuleType.conjunction)
+				{
+					//alert("resolving conjunction: "+tempRuleValue[pointer]+" between: "+tempRuleValue[pointer-1]+" and "+tempRuleValue[pointer+1]);
+					try
+					{
+						var tempHolder = null;
+						if(tempRuleType[pointer-1] == FirePathSectionRuleType.processed
+							&& tempRuleType[pointer+1] == FirePathSectionRuleType.processed)
+						{
+							if(tempRuleValue[pointer] == "and")
+							{
+								tempHolder = (tempRuleValue[pointer-1] && tempRuleValue[pointer+1]);
+							}
+							else if(tempRuleValue[pointer] == "or")
+							{
+								tempHolder = (tempRuleValue[pointer-1] || tempRuleValue[pointer+1]);
+							}
+							tempRuleValue.splice(pointer-1,3,tempHolder);
+							tempRuleType.splice(pointer-1,3,FirePathSectionRuleType.processed);
+							pointer--;
+						}
+						else
+						{
+							if(DEBUG)
+							{
+								alert("error in rule");
+							}
+						}
+					}
+					catch(err)
+					{
+						ultimateFail = true;
+					}
+					//alert("resolved conjunction: "+tempRuleValue[pointer]);
+				}
+				pointer++;
+				if(pointer > tempRuleValue.length)
+				{
+					notDone = false;
+				}
+				//alert("current value array: "+tempRuleValue+" current type array: "+tempRuleType);
+			}
+		}
+		if(tempRuleValue.length > 1 || ultimateFail)
+		{
+			return null;
+		}
+		else
+		{
+			return tempRuleValue[0];
+		}
+	}
 }

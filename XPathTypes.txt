@@ -106,3 +106,50 @@ b1/c22
 c3
 =
 'test2'
+
+*********************************************************************
+
+https://firepath-fb.firebaseIO.com/*/b1[c2=1 and c1/d1=\'blah\']//d1
+
+https://firepath-fb.firebaseIO.com/
+child_added (add anything to subsections)
+child_removed (remove specific from subsections)
+
+* (in subsections of root)
+child_added (looking for b1 where rule is true)
+child_removed
+------------------------------------------------>once rule is passed add
+												value (c2 must = 1)
+												value (c1/d1 = 'blah')
+
+b1 (in subsections of star)
+value (double slash, have to look everywhere)
+
+d1 (in subsections of b1)
+TERMINUS
+
+********************************************************************
+
+https://firepath-fb.firebaseio.com (CA|CR) [a1,a2,a3]
+    a1 (CA|CR) [b1]
+        b1 (V) [d1] (R) [C2,C1/D1]
+            c1
+                d1 = blah
+            c2 = 2
+            c3
+                d1 = 4
+        b2 = 1
+    a2 = 6 (CA|CR) []
+    a3 (CA|CR) [b1]
+        b1 (V) [d1] (R) [C2,C1/D1]
+            c1
+                d1 = blah
+            c2 = 1
+            c3
+                d1 = a
+            c4
+                d1 = b
+
+basically boils down to - if node (CA and CR)
+                          if node with rule (CA and CR and V)
+                          if double slash (V)

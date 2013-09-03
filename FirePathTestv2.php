@@ -2,7 +2,8 @@
 
 <html>
 <head>
-
+<script src='https://cdn.firebase.com/v0/firebase.js'></script>
+<script type="text/javascript" src="firepath2.js"></script>
 <title>Jason Brelloch CSC 8711 - Projects</title>
 
 </head>
@@ -26,16 +27,18 @@
 <!-- ============ RIGHT COLUMN (CONTENT) ============== -->
 <td valign="top" bgcolor="#d2d8c7">
 
-<h2>Projects</h2>
+	<script type="text/javascript">
+		var pathTest = new FirePath('https://firepath-fb.firebaseIO.com/*/b1[c2=1 and c1/d1=\'blah\']//d1', true);
 
-<a href="divisions.php">Project 1</a><br/>
-<a href="project2.php">Project 2 part 3b</a><br/>
-<a href="http://tinman.cs.gsu.edu:9999/~jbrelloch/servlet/SDB">Project 4</a><br/>
-<a href="tictac.php">Tic-Tac-Toe Using Firebase</a><br/><br/>
-<a href="FirePathTest.php">FirePath Test Page (Nothing to See Here)</a><br/>
-<a href="FirePathTestv2.php">FirePath Test Page v2 (Nothing to See Here)</a><br/>
-<a href="FirePathTester.php">FirePath Path Tester</a>
+		function clickme()
+		{
+			var test = pathTest.getRootPath();
 
+			alert(test);
+		}
+	</script>
+
+	<button onclick='clickme()'>Click Me!</button>
 </body>
 
 </html>
