@@ -1,13 +1,27 @@
 Introduction
 NoSQL
 Firebase
+	Firebase overview
 XPath
-A note on javascript closures
-Parsing xpath
+	similarities between xpath and firebase nodes
+	what I am going to support
+Javascript
+	A note on javascript closures
+	Garbage collection
+	?Event Listeners
+Parsing xpath - //two methods the same
 	Nodes
 	Rules
-Processing Paths with firebase
-	At execution
-	Always on
-		"eventually consistent"
+Explain two methods ->
+	Processing Paths with firebase
+		At execution
+		Always on
+			"eventually consistent"
+	ProcessPaths()
+		->Execution
+	ArrangeSections()
+		->tree search
+Problems
+Expansion
+Questions
 

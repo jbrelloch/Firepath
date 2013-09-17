@@ -504,7 +504,7 @@ function FirePath(path, optDEBUG)
 			}
 			else
 			{
-				alert('No paths found!');
+				//alert('No paths found!');
 			}
 		});
 	};
@@ -531,7 +531,7 @@ function FirePath(path, optDEBUG)
 			}
 			else
 			{
-				alert('No paths found!');
+				//alert('No paths found!');
 			}
 		});
 	};
@@ -558,7 +558,7 @@ function FirePath(path, optDEBUG)
 			}
 			else
 			{
-				alert('No paths found!');
+				//alert('No paths found!');
 			}
 		});
 	};

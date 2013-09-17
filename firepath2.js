@@ -23,14 +23,15 @@ function FirePath(path, optDEBUG)
 
 	firePathRoot.ArrangeSection();
 
-	this.getRootPath = function(){
-		return firePathRoot;
-	};
+	// this.getRootPath = function(){
+	// 	return firePathRoot;
+	// };
 
 	function getPaths()
 	{
 		var notDone = true;
 		var nodesToSearch = [firePathRoot];
+		var newNodesToSearch = [];
 		var currentPaths = [];
 
 		while(notDone)
@@ -40,9 +41,52 @@ function FirePath(path, optDEBUG)
 				var currentNode = nodesToSearch[i];
 				for(var j = 0; j<currentNode.subSections.length)
 				{
-					
+					currentSubNode = currentNode.subSections[j];
+					if(currentSubNode.terminus)
+					{
+						currentPaths.push(currentSubNode.path);
+					}
+					else if(currentSubNode.terminusBelow && (currentSubNode.rule != null && currentSubNode.ruleStatus))
+					{
+						newNodesToSearch.push(currentSubNode);
+					}
 				}
 			}
+			if(newNodesToSearch.length == 0)
+			{
+				notDone = false;
+			}
+			else
+			{
+				nodesToSearch = newNodesToSearch;
+			}
+		}
+
+		return currentPaths;
+	}
+
+	this.wait = function(timeout,callback,timeoutCallback) {
+		if(firePathRoot.terminusBelow)
+		{
+			callback();
+		}
+		else
+		{
+			var timer = setInterval(function(){
+				if(firePathRoot.terminusBelow)
+				{
+					clearInterval(timer);
+					callback();
+				}
+			},1000);
+
+			var timerTimeout = setTimeout(function(){
+				clearInterval(timer);
+				if(timeoutCallback != null)
+				{
+					timeoutCallback();
+				}
+			},timeout);
 		}
 	}
 
@@ -109,26 +153,310 @@ function FirePath(path, optDEBUG)
 	};
 	this.set = function(value,optOnComplete)
 	{
+		var fireBasePaths = getPaths();
+
+		if(fireBasePaths.length > 0)//OUTER IF SUBJECT TO CHANGE (what do we do when no path's are found?)
+		{
+			var finishCount = 0;
+			var errors = [];
+			for (var i = 0; i < fireBasePaths.length; i++) 
+			{
+				fireBasePaths[i].set(value,function(error){
+					errors.push(error);
+					finishCount++;
+					if(finishCount == fireBasePaths.length)
+					{
+						if(optOnComplete != null){
+							return optOnComplete(errors);
+						}
+					}
+				});
+			};
+		}
 	};
 	this.update = function(value,optOnComplete)
 	{
+		var fireBasePaths = getPaths();
+
+		if(fireBasePaths.length > 0)//OUTER IF SUBJECT TO CHANGE (what do we do when no path's are found?)
+		{
+			var finishCount = 0;
+			var errors = [];
+			for (var i = 0; i < fireBasePaths.length; i++) 
+			{
+				fireBasePaths[i].update(value,function(error){
+					errors.push(error);
+					finishCount++;
+					if(finishCount == fireBasePaths.length)
+					{
+						if(optOnComplete != null){
+							return optOnComplete(errors);
+						}
+					}
+				});
+			};
+		}
 	};
 	this.remove = function(optOnComplete)
 	{
+		if(fireBasePaths.length > 0)//OUTER IF SUBJECT TO CHANGE (what do we do when no path's are found?)
+		{
+			var finishCount = 0;
+			var errors = [];
+			for (var i = 0; i < fireBasePaths.length; i++) 
+			{
+				fireBasePaths[i].remove(function(error){
+					errors.push(error);
+					finishCount++;
+					if(finishCount == fireBasePaths.length)
+					{
+						if(optOnComplete != null){
+							return optOnComplete(errors);
+						}
+					}
+				});
+			};
+		}
 	};
 	//Value is supposed to be optional, but i need the callback and I 
 	// dont think it will work with a callback without a value
 	this.push = function(value,optOnComplete)
 	{
+		if(fireBasePaths.length > 0)//OUTER IF SUBJECT TO CHANGE (what do we do when no path's are found?)
+		{
+			var finishCount = 0;
+			var errors = [];
+			for (var i = 0; i < fireBasePaths.length; i++) 
+			{
+				fireBasePaths[i].push(value,function(error){
+					errors.push(error);
+					finishCount++;
+					if(finishCount == fireBasePaths.length)
+					{
+						if(optOnComplete != null){
+							return optOnComplete(errors);
+						}
+					}
+				});
+			};
+		}
 	};
 	this.on = function(eventType,callback,optCancelCallback,optContext)
 	{
+		if(fireBasePaths.length > 0)//OUTER IF SUBJECT TO CHANGE (what do we do when no path's are found?)
+		{
+			var finishCount = 0;
+			var errors = [];
+			for (var i = 0; i < fireBasePaths.length; i++) 
+			{
+				switch(eventType)
+				{
+					case 'value':
+					case 'child_removed':
+						if(optCancelCallback != null && optContext != null)
+						{
+							fireBasePaths[i].on(eventType,function(dataSnapshot){
+								callback(dataSnapshot);
+							},function(){
+								optCancelCallback()
+							},optContext);
+						}
+						else if(optCancelCallback != null)
+						{
+							fireBasePaths[i].on(eventType,function(dataSnapshot){
+								callback(dataSnapshot);
+							},function(){
+								optCancelCallback()
+							});
+						}
+						else if(optContext != null)
+						{
+							fireBasePaths[i].on(eventType,function(dataSnapshot){
+								callback(dataSnapshot);
+							},optContext);
+						}
+						else
+						{
+							fireBasePaths[i].on(eventType,function(dataSnapshot){
+								callback(dataSnapshot);
+							});
+						}
+						break;
+					case 'child_added':
+					case 'child_changed':
+					case 'child_moved':
+						if(optCancelCallback != null && optContext != null)
+						{
+							fireBasePaths[i].on(eventType,function(childSnapshot, prevSnapshot){
+								callback(childSnapshot, prevSnapshot);
+							},function(){
+								optCancelCallback()
+							},optContext);
+						}
+						else if(optCancelCallback != null)
+						{
+							fireBasePaths[i].on(eventType,function(childSnapshot, prevSnapshot){
+								callback(childSnapshot, prevSnapshot);
+							},function(){
+								optCancelCallback()
+							});
+						}
+						else if(optContext != null)
+						{
+							fireBasePaths[i].on(eventType,function(childSnapshot, prevSnapshot){
+								callback(childSnapshot, prevSnapshot);
+							},optContext);
+						}
+						else
+						{
+							fireBasePaths[i].on(eventType,function(childSnapshot, prevSnapshot){
+								callback(childSnapshot, prevSnapshot);
+							});
+						}
+						break;
+				}
+			};
+		}
 	};
 	this.off = function(optEventType,optCallback,optContext)
 	{
+		if(fireBasePaths.length > 0)//OUTER IF SUBJECT TO CHANGE (what do we do when no path's are found?)
+		{
+			var finishCount = 0;
+			var errors = [];
+			for (var i = 0; i < fireBasePaths.length; i++) 
+			{
+				switch(optEventType)
+				{
+					case 'value':
+					case 'child_removed':
+						if(optCallback != null && optContext != null)
+						{
+							fireBasePaths[i].off(optEventType,function(dataSnapshot){
+								optCallback(dataSnapshot);
+							},optContext);
+						}
+						else if(optCallback != null)
+						{
+							fireBasePaths[i].off(optEventType,function(dataSnapshot){
+								optCallback(dataSnapshot);
+							});
+						}
+						else if(optContext != null)
+						{
+							fireBasePaths[i].off(optEventType,optContext);
+						}
+						else
+						{
+							fireBasePaths[i].off(optEventType);
+						}
+						break;
+					case 'child_added':
+					case 'child_changed':
+					case 'child_moved':
+						if(optCallback != null && optContext != null)
+						{
+							fireBasePaths[i].off(optEventType,function(dataSnapshot){
+								optCallback(dataSnapshot);
+							},optContext);
+						}
+						else if(optCallback != null)
+						{
+							fireBasePaths[i].off(optEventType,function(dataSnapshot){
+								optCallback(dataSnapshot);
+							});
+						}
+						else if(optContext != null)
+						{
+							fireBasePaths[i].off(optEventType,optContext);
+						}
+						else
+						{
+							fireBasePaths[i].off(optEventType);
+						}
+						break;
+					default:
+						fireBasePaths[i].off();
+				}
+			};
+		}
 	};
 	this.once = function(eventType,successCallback,optFailureCallback,optContext)
 	{
+		if(fireBasePaths.length > 0)//OUTER IF SUBJECT TO CHANGE (what do we do when no path's are found?)
+		{
+			var finishCount = 0;
+			var errors = [];
+			for (var i = 0; i < fireBasePaths.length; i++) 
+			{
+				switch(eventType)
+				{
+					case 'value':
+					case 'child_removed':
+						if(optFailureCallback != null && optContext != null)
+						{
+							fireBasePaths[i].once(eventType,function(dataSnapshot){
+								successCallback(dataSnapshot);
+							},function(){
+								optFailureCallback()
+							},optContext);
+						}
+						else if(optFailureCallback != null)
+						{
+							fireBasePaths[i].once(eventType,function(dataSnapshot){
+								successCallback(dataSnapshot);
+							},function(){
+								optFailureCallback()
+							});
+						}
+						else if(optContext != null)
+						{
+							fireBasePaths[i].once(eventType,function(dataSnapshot){
+								successCallback(dataSnapshot);
+							},optContext);
+						}
+						else
+						{
+							fireBasePaths[i].once(eventType,function(dataSnapshot){
+								successCallback(dataSnapshot);
+							});
+						}
+						break;
+					case 'child_added':
+					case 'child_changed':
+					case 'child_moved':
+						if(optFailureCallback != null && optContext != null)
+						{
+							fireBasePaths[i].once(eventType,function(childSnapshot, prevSnapshot){
+								successCallback(dataSnapshot);
+							},function(){
+								optFailureCallback()
+							},optContext);
+						}
+						else if(optFailureCallback != null)
+						{
+							fireBasePaths[i].once(eventType,function(childSnapshot, prevSnapshot){
+								successCallback(dataSnapshot);
+							},function(){
+								optFailureCallback()
+							});
+						}
+						else if(optContext != null)
+						{
+							fireBasePaths[i].once(eventType,function(childSnapshot, prevSnapshot){
+								successCallback(dataSnapshot);
+							},optContext);
+						}
+						else
+						{
+							fireBasePaths[i].once(eventType,function(childSnapshot, prevSnapshot){
+								successCallback(dataSnapshot);
+							});
+						}
+						break;
+				}
+			};
+		}
 	};
 
 	//may or may not support these
