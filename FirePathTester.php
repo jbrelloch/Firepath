@@ -7,7 +7,7 @@
 <script type="text/javascript" src="firepath.js"></script>
 <script type="text/javascript">
 function loadFullTree(){
-	var fullTree = new FirePath('https://firepath-fb.firebaseIO.com//*');
+	var fullTree = new Firepath('https://firepath-fb.firebaseIO.com//*');
 	fullTree.once('value', function(dataSnapshot){
 
 		pathElement = document.getElementById('paths');
@@ -63,7 +63,7 @@ function highlightTree() {
 	});
 
 	var test = $('#path').val();
-	var currentTree = new FirePath(test);
+	var currentTree = new Firepath(test);
 
 
 	var valueElement = document.getElementById('changer');

@@ -1,6 +1,6 @@
 var DEBUG = false;
 
-var FirePathSectionRuleType = { "path": 0, 
+var FirepathSectionRuleType = { "path": 0, 
              "string": 1, 
              "number": 2,
              "operator": 3,
@@ -8,12 +8,12 @@ var FirePathSectionRuleType = { "path": 0,
              "rulePart": 5,
              "processed": 6 };
 
-function FirePath(path, optDEBUG)
+function Firepath(path, optDEBUG)
 {
 	if(optDEBUG != null)
 		DEBUG = optDEBUG;
 
-	var parser = new FirePathParser();
+	var parser = new FirepathParser();
 
 	var pathSections = parser.parse(path);
 
@@ -69,26 +69,26 @@ function FirePath(path, optDEBUG)
 			var pointer = 0;
 			while(notDone)
 			{
-				//alert("Inner loop count: "+pointer+" ruleType: "+tempRuleType[pointer]+" conj rule type: "+FirePathSectionRuleType.conjunction);
-				if(i==0 && tempRuleType[pointer]==FirePathSectionRuleType.rulePart)
+				//alert("Inner loop count: "+pointer+" ruleType: "+tempRuleType[pointer]+" conj rule type: "+FirepathSectionRuleType.conjunction);
+				if(i==0 && tempRuleType[pointer]==FirepathSectionRuleType.rulePart)
 				{
 					try
 					{
 						tempRuleValue[pointer] = testRulePart(tempRuleValue[pointer],snapShotBase);
-						tempRuleType[pointer] = FirePathSectionRuleType.processed;
+						tempRuleType[pointer] = FirepathSectionRuleType.processed;
 					}
 					catch(err)
 					{
 						ultimateFail = true;
 					}
 				}
-				else if(i==1 && tempRuleType[pointer]==FirePathSectionRuleType.path)
+				else if(i==1 && tempRuleType[pointer]==FirepathSectionRuleType.path)
 				{
 					//alert("resolving path: "+tempRuleValue[pointer]+" from ref: "+snapShotBase.ref().toString());
 					try
 					{
 						tempRuleValue[pointer] = snapShotBase.child(tempRuleValue[pointer]).val();
-						tempRuleType[pointer] = FirePathSectionRuleType.string;
+						tempRuleType[pointer] = FirepathSectionRuleType.string;
 					}
 					catch(err)
 					{
@@ -96,7 +96,7 @@ function FirePath(path, optDEBUG)
 					}
 					//alert("path resolved: "+tempRuleValue[pointer]);
 				}
-				else if(i==2 && tempRuleType[pointer]==FirePathSectionRuleType.operator)
+				else if(i==2 && tempRuleType[pointer]==FirepathSectionRuleType.operator)
 				{
 					//alert("resolving operator: "+tempRuleValue[pointer]+" between: "+tempRuleValue[pointer-1]+" and "+tempRuleValue[pointer+1]);
 					try
@@ -119,7 +119,7 @@ function FirePath(path, optDEBUG)
 							tempHolder = (tempRuleValue[pointer-1] != tempRuleValue[pointer+1]);
 						}
 						tempRuleValue.splice(pointer-1,3,tempHolder);
-						tempRuleType.splice(pointer-1,3,FirePathSectionRuleType.processed);
+						tempRuleType.splice(pointer-1,3,FirepathSectionRuleType.processed);
 						pointer--;
 					}
 					catch(err)
@@ -128,14 +128,14 @@ function FirePath(path, optDEBUG)
 					}
 					//alert("resolved operator: "+tempRuleValue[pointer]);
 				}
-				else if(i==3 && tempRuleType[pointer]==FirePathSectionRuleType.conjunction)
+				else if(i==3 && tempRuleType[pointer]==FirepathSectionRuleType.conjunction)
 				{
 					//alert("resolving conjunction: "+tempRuleValue[pointer]+" between: "+tempRuleValue[pointer-1]+" and "+tempRuleValue[pointer+1]);
 					try
 					{
 						var tempHolder = null;
-						if(tempRuleType[pointer-1] == FirePathSectionRuleType.processed
-							&& tempRuleType[pointer+1] == FirePathSectionRuleType.processed)
+						if(tempRuleType[pointer-1] == FirepathSectionRuleType.processed
+							&& tempRuleType[pointer+1] == FirepathSectionRuleType.processed)
 						{
 							if(tempRuleValue[pointer] == "and")
 							{
@@ -146,7 +146,7 @@ function FirePath(path, optDEBUG)
 								tempHolder = (tempRuleValue[pointer-1] || tempRuleValue[pointer+1]);
 							}
 							tempRuleValue.splice(pointer-1,3,tempHolder);
-							tempRuleType.splice(pointer-1,3,FirePathSectionRuleType.processed);
+							tempRuleType.splice(pointer-1,3,FirepathSectionRuleType.processed);
 							pointer--;
 						}
 						else
@@ -395,7 +395,7 @@ function FirePath(path, optDEBUG)
 			var j = 0;
 			while(j < ruleToWrite.elementValue.length)
 			{
-				if(ruleToWrite.elementType[j] == FirePathSectionRuleType.rulePart)
+				if(ruleToWrite.elementType[j] == FirepathSectionRuleType.rulePart)
 				{
 					var stringToWrite = 'type= ('+ruleToWrite.elementType[j]+') value= ('+ruleToWrite.elementValue[j].toString()+')';
 					for(var k=0;k<indentLevel;k++)
@@ -426,19 +426,19 @@ function FirePath(path, optDEBUG)
 		{
 			var trimmedBasePath = basePath.replace(/\/+$/,'');
 			var newPath = trimmedBasePath+childPath;
-			return new FirePath(newPath);
+			return new Firepath(newPath);
 		}
 		else if(childPath.indexOf('/') == 0)//starts with '/'
 		{
 			var trimmedBasePath = basePath.replace(/\/+$/,'');
 			var newPath = trimmedBasePath+childPath;
-			return new FirePath(newPath);
+			return new Firepath(newPath);
 		}
 		else
 		{
 			var trimmedBasePath = basePath.replace(/\/+$/,'');
 			var newPath = trimmedBasePath+'/'+childPath;
-			return new FirePath(newPath);
+			return new Firepath(newPath);
 		}
 	};
 	this.parent = function()//MAY NEED TO RETHINK THIS ONE ((https://firepath-fb.firebaseio.com/*/b1).parent() 
@@ -465,13 +465,13 @@ function FirePath(path, optDEBUG)
 					newPath = newPath+'['+pathSections[i].rule+']/';
 				}
 			}
-			return new FirePath(newPath);
+			return new Firepath(newPath);
 		}
 	};
 	this.root = function()
 	{
 		//the first element in sections is the root
-		return new FirePath(pathSections[0].name); 
+		return new Firepath(pathSections[0].name); 
 	};
 	this.name = function()
 	{
@@ -840,7 +840,7 @@ function FirePath(path, optDEBUG)
 	this.unauth = function(){};
 }
 
-function FirePathParser()
+function FirepathParser()
 {
 	this.parse = function(path)
 	{
@@ -854,14 +854,14 @@ function FirePathParser()
 			{
 				toPush = toPush.replace(/^\/\//,'/');
 			}
-			var section = new FirePathSection(toPush);
+			var section = new FirepathSection(toPush);
 			sections.push(section);
 		}
 		return sections;
 	}
 }
 
-function FirePathSection(unparsedSection)
+function FirepathSection(unparsedSection)
 {
 	this.unparsedSection = unparsedSection;
 
@@ -876,7 +876,7 @@ function FirePathSection(unparsedSection)
 		}
 
 		this.name = parts[0];
-		this.rule = new FirePathSectionRule(parts[1]);
+		this.rule = new FirepathSectionRule(parts[1]);
 	}
 	else
 	{
@@ -885,7 +885,7 @@ function FirePathSection(unparsedSection)
 	}
 }
 
-function FirePathSectionRule(unparsedRule)
+function FirepathSectionRule(unparsedRule)
 {
 	//evaluate rules with this order
 	//functions,+,-,*,div,=,!=,<,<=,>,>=,or,and,mod
@@ -902,32 +902,32 @@ function FirePathSectionRule(unparsedRule)
 		{
 			var stringToPush = matched[0].replace('(','');
 			stringToPush = stringToPush.replace(')','');
-			this.elementType.push(FirePathSectionRuleType.rulePart);
-			this.elementValue.push(new FirePathSectionRule(stringToPush));
+			this.elementType.push(FirepathSectionRuleType.rulePart);
+			this.elementValue.push(new FirepathSectionRule(stringToPush));
 		}
 		else if(/^[=<>!]+$/.test(matched[0]))
 		{
-			this.elementType.push(FirePathSectionRuleType.operator);
+			this.elementType.push(FirepathSectionRuleType.operator);
 			this.elementValue.push(matched[0]);
 		}
 		else if(/^ and | or +$/.test(matched[0]))
 		{
-			this.elementType.push(FirePathSectionRuleType.conjunction);
+			this.elementType.push(FirepathSectionRuleType.conjunction);
 			this.elementValue.push(matched[0].replace(/\s/g,''));
 		}
 		else if(/^'\w+'|"\w+"$/.test(matched[0]))
 		{
-			this.elementType.push(FirePathSectionRuleType.string);
+			this.elementType.push(FirepathSectionRuleType.string);
 			this.elementValue.push(matched[0].replace(/['"]/g,''));
 		}
 		else if(/^[a-zA-Z][a-zA-Z0-9\/]+$/.test(matched[0]))
 		{
-			this.elementType.push(FirePathSectionRuleType.path);
+			this.elementType.push(FirepathSectionRuleType.path);
 			this.elementValue.push(matched[0]);
 		}
 		else if(/^[0-9]+$/.test(matched[0]))
 		{
-			this.elementType.push(FirePathSectionRuleType.number);
+			this.elementType.push(FirepathSectionRuleType.number);
 			this.elementValue.push(matched[0]);
 		}
 		else
