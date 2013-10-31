@@ -540,7 +540,7 @@ function Firepath(path, optDEBUG)
 		processPath([],0,function(){
 			var finishCount = 0;
 			var errors = [];
-			if(fireBasePaths.length > 0)//OUTER IF SUBJECT TO CHANGE (what do we do when no path's are found?)
+			if(fireBasePaths.length > 0)
 			{
 				for (var i = 0; i < fireBasePaths.length; i++) 
 				{
@@ -558,7 +558,8 @@ function Firepath(path, optDEBUG)
 			}
 			else
 			{
-				//alert('No paths found!');
+				if(DEBUG)
+					alert('No paths found!');
 			}
 		});
 	};

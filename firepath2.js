@@ -39,7 +39,7 @@ function Firepath(path, optDEBUG)
 			for(var i = 0; i<nodesToSearch.length; i++)
 			{
 				var currentNode = nodesToSearch[i];
-				for(var j = 0; j<currentNode.subSections.length)
+				for(var j = 0; j<currentNode.subSections.length; j++)
 				{
 					currentSubNode = currentNode.subSections[j];
 					if(currentSubNode.terminus)
