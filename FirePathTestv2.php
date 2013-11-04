@@ -28,6 +28,7 @@
 <td valign="top" bgcolor="#d2d8c7">
 
 	<script type="text/javascript">
+	
 		var pathTest = new Firepath('https://firepath-fb.firebaseIO.com/*/b1[c2=1 and c1/d1=\'blah\']//d1', true);
 
 		function clickme()

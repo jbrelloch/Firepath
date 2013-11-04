@@ -62,7 +62,13 @@ function Firepath(path, optDEBUG)
 			}
 		}
 
-		return currentPaths;
+		var fireBases = [];
+		for(var k = 0; k < currentPaths.length; k++)
+		{
+			fireBases.push(new Firebase(currentPaths[k]));
+		}
+
+		return fireBases;
 	}
 
 	this.wait = function(timeout,callback,timeoutCallback) {
@@ -199,6 +205,8 @@ function Firepath(path, optDEBUG)
 	};
 	this.remove = function(optOnComplete)
 	{
+		var fireBasePaths = getPaths();
+
 		if(fireBasePaths.length > 0)//OUTER IF SUBJECT TO CHANGE (what do we do when no path's are found?)
 		{
 			var finishCount = 0;
@@ -222,6 +230,8 @@ function Firepath(path, optDEBUG)
 	// dont think it will work with a callback without a value
 	this.push = function(value,optOnComplete)
 	{
+		var fireBasePaths = getPaths();
+
 		if(fireBasePaths.length > 0)//OUTER IF SUBJECT TO CHANGE (what do we do when no path's are found?)
 		{
 			var finishCount = 0;
@@ -243,6 +253,8 @@ function Firepath(path, optDEBUG)
 	};
 	this.on = function(eventType,callback,optCancelCallback,optContext)
 	{
+		var fireBasePaths = getPaths();
+
 		if(fireBasePaths.length > 0)//OUTER IF SUBJECT TO CHANGE (what do we do when no path's are found?)
 		{
 			var finishCount = 0;
@@ -320,6 +332,8 @@ function Firepath(path, optDEBUG)
 	};
 	this.off = function(optEventType,optCallback,optContext)
 	{
+		var fireBasePaths = getPaths();
+
 		if(fireBasePaths.length > 0)//OUTER IF SUBJECT TO CHANGE (what do we do when no path's are found?)
 		{
 			var finishCount = 0;
@@ -383,6 +397,8 @@ function Firepath(path, optDEBUG)
 	};
 	this.once = function(eventType,successCallback,optFailureCallback,optContext)
 	{
+		var fireBasePaths = getPaths();
+		
 		if(fireBasePaths.length > 0)//OUTER IF SUBJECT TO CHANGE (what do we do when no path's are found?)
 		{
 			var finishCount = 0;

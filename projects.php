@@ -35,6 +35,7 @@
 <a href="FirePathTest.php">FirePath Test Page (Nothing to See Here)</a><br/>
 <a href="FirePathTestv2.php">FirePath Test Page v2 (Nothing to See Here)</a><br/>
 <a href="FirePathTester.php">FirePath Path Tester</a>
+<a href="FirePathTester.php">FirePath Path Tester v2</a>
 
 </body>
 
