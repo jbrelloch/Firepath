@@ -136,7 +136,7 @@ function highlightTree() {
 		case 'once':
 			currentTree.once($('#eventTypePicker').val(), function (dataSnapshot) {
 				var listenerText = document.getElementById('listenerContent')
-				listenerText.innerHTML = listenerText.innerHTML + "Event fired on firebase ref: "+dataSnapshot.ref()+"<br>";
+				listenerText.innerHTML = listenerText.innerHTML + "Event fired (once) on firebase ref: "+dataSnapshot.ref()+"<br>";
 			});
 			break;
 	}

@@ -54,7 +54,7 @@ function loadFullTree(){
 				alert("fuck");
 			},document)
 		}
-		,10000);
+		,1000);
 }
 
 function highlightTree() {
@@ -100,46 +100,90 @@ function highlightTree() {
 	switch(valueElement.options[valueElement.selectedIndex].innerHTML)
 	{
 		case '':
-			currentTree.once('value', HighlightCallback, function(){ alert("error"); }, document);
+			setTimeout(
+				function(){
+					currentTree.once('value', HighlightCallback, function(){ alert("error"); }, document);
+				}
+			,1000);
 			break;
 		case 'parent':
-			currentTree.parent().once('value', HighlightCallback, function(){ alert("error"); }, document);
+			setTimeout(
+				function(){
+					currentTree.parent().once('value', HighlightCallback, function(){ alert("error"); }, document);
+				}
+			,1000);
 			break;
 		case 'root':
+			setTimeout(
+				function(){
 			currentTree.root().once('value', HighlightCallback, function(){ alert("error"); }, document);
+			}
+			,1000);
 			break;
 		//////////////////////////////////////////////////////
 		case 'child':
+			setTimeout(
+				function(){
 			currentTree.child($('#valueInput').val()).once('value', HighlightCallback, function(){ alert("error"); }, document);
+			}
+			,1000);
 			break;
 		case 'set':
+			setTimeout(
+				function(){
 			currentTree.set($('#valueInput').val(), function(){ location.reload(); });
+			}
+			,1000);
 			break;
 		case 'update':
+			setTimeout(
+				function(){
 			currentTree.update($('#valueInput').val(), function(){ location.reload(); });
+			}
+			,1000);
 			break;
 		case 'push':
+			setTimeout(
+				function(){
 			currentTree.push($('#valueInput').val(), function(){ location.reload(); });
+			}
+			,1000);
 			break;
 		//////////////////////////////////////////////////////
 		case 'remove':
-			currentTree.remove(function(){ location.reload(); });
+			setTimeout(
+				function(){
+					currentTree.remove(function(){ location.reload(); });
+					}
+			,1000);
 			break;
 		//////////////////////////////////////////////////////
 		case 'on':
-			currentTree.on($('#eventTypePicker').val(), function (dataSnapshot) {
-				var listenerText = document.getElementById('listenerContent')
-				listenerText.innerHTML = listenerText.innerHTML + "Event fired on firebase ref: "+dataSnapshot.ref()+"<br>";
-			});
+			setTimeout(
+				function(){
+					currentTree.on($('#eventTypePicker').val(), function (dataSnapshot) {
+						var listenerText = document.getElementById('listenerContent')
+						listenerText.innerHTML = listenerText.innerHTML + "Event fired on firebase ref: "+dataSnapshot.ref()+"<br>";
+					});
+					}
+			,1000);
 			break;
 		case 'off':
-			currentTree.off($('#eventTypePicker').val());
+			setTimeout(
+				function(){
+					currentTree.off($('#eventTypePicker').val());
+					}
+			,1000);
 			break;
 		case 'once':
-			currentTree.once($('#eventTypePicker').val(), function (dataSnapshot) {
-				var listenerText = document.getElementById('listenerContent')
-				listenerText.innerHTML = listenerText.innerHTML + "Event fired on firebase ref: "+dataSnapshot.ref()+"<br>";
-			});
+			setTimeout(
+				function(){
+					currentTree.once($('#eventTypePicker').val(), function (dataSnapshot) {
+						var listenerText = document.getElementById('listenerContent')
+						listenerText.innerHTML = listenerText.innerHTML + "Event fired on firebase ref: "+dataSnapshot.ref()+"<br>";
+					});
+					}
+			,1000);
 			break;
 	}
 
